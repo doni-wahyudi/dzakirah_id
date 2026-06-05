@@ -1,0 +1,297 @@
+/* =====================================================
+   BLOG POST PAGE STYLES
+   ===================================================== */
+
+.post-header-nav {
+  padding-top: var(--space-8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-divider);
+  padding-bottom: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-medium);
+}
+
+.back-link:hover {
+  color: var(--color-primary);
+  transform: translateX(-4px);
+}
+
+.post-header-nav .breadcrumb {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.post-header-nav .breadcrumb .current {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* Post Body Styling */
+.section--post-body {
+  padding-top: var(--space-10);
+}
+
+.post-article {
+  background-color: var(--color-bg-card);
+  padding: var(--space-12) var(--space-10);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.post-category {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-4);
+}
+
+.post-title {
+  font-size: var(--text-4xl);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+}
+
+.post-meta {
+  display: flex;
+  gap: var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-divider);
+  padding-bottom: var(--space-4);
+}
+
+.post-meta span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.post-hero-image {
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.post-hero-image .decor-icon {
+  opacity: 0.3;
+  animation: rotateSubtle 20s linear infinite;
+}
+
+/* Rich Typography inside Content */
+.post-content {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.post-content p {
+  margin-bottom: var(--space-6);
+}
+
+.post-content h2 {
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-4);
+}
+
+.post-quote {
+  border-left: 4px solid var(--color-accent);
+  background-color: var(--color-bg-alt);
+  padding: var(--space-6) var(--space-8);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: var(--space-8) 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-text);
+}
+
+.post-quote p {
+  margin: 0;
+}
+
+.post-list {
+  margin: var(--space-6) 0 var(--space-8) var(--space-6);
+  list-style: none;
+}
+
+.post-list li {
+  position: relative;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.post-list li::before {
+  content: '🌷';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 14px;
+}
+
+/* Share box */
+.post-share {
+  margin-top: var(--space-12);
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.post-share h4 {
+  font-size: var(--text-base);
+  color: var(--color-text);
+}
+
+.share-buttons {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: var(--transition-base);
+  border: 1px solid var(--color-border);
+}
+
+.share-btn.whatsapp {
+  background-color: var(--color-whatsapp);
+  color: var(--color-white);
+  border-color: var(--color-whatsapp);
+}
+
+.share-btn.whatsapp:hover {
+  background-color: #1ebea5;
+  transform: translateY(-2px);
+}
+
+.share-btn.copylink {
+  background-color: var(--color-white);
+  color: var(--color-text);
+}
+
+.share-btn.copylink:hover {
+  background-color: var(--color-bg-alt);
+  transform: translateY(-2px);
+}
+
+/* Related articles */
+.related-articles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.related-article-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.related-article-card .category {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-2);
+}
+
+.related-article-card h4 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+
+.related-article-card p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  flex-grow: 1;
+  margin-bottom: var(--space-4);
+}
+
+.related-article-card .readtime {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Error Post State */
+.blog-error {
+  padding: var(--space-20) 0;
+  text-align: center;
+}
+
+.blog-error h2 {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-4);
+}
+
+.blog-error p {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .post-article {
+    padding: var(--space-8) var(--space-4);
+  }
+  .post-title {
+    font-size: var(--text-3xl);
+  }
+  .post-hero-image {
+    height: 220px;
+    margin-bottom: var(--space-6);
+  }
+  .post-content {
+    font-size: var(--text-base);
+  }
+  .post-share {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .share-buttons {
+    flex-direction: column;
+  }
+  .share-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .related-articles-grid {
+    grid-template-columns: 1fr;
+  }
+}

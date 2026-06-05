@@ -1,0 +1,21 @@
+/* =====================================================
+   DZAKIRAH.ID — APP LAYOUT WRAPPERS
+   ===================================================== */
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.main-content {
+  flex-grow: 1;
+}
+
+/* Page transitions, smooth scroll offset settings, and routing wrappers */
+@media (max-width: 768px) {
+  .main-content {
+    padding-bottom: 20px; /* add spacing before the bottom bar */
+  }
+}
