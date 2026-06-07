@@ -21,6 +21,11 @@ export default function HomePage() {
   const upcomingEvents = events.filter(e => e.isUpcoming).slice(0, 3);
   const latestArticles = articles.slice(0, 3);
 
+  const getImageUrl = (path) => {
+    if (!path) return '';
+    return path.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : path;
+  };
+
   return (
     <main className="home" id="home-page">
       {/* ===== HERO ===== */}
@@ -209,6 +214,9 @@ export default function HomePage() {
                 id={`blog-card-${article.id}`}
               >
                 <div className="blog-card__thumb" style={{ background: `linear-gradient(135deg, var(--color-primary-lighter), var(--color-bg-alt))` }}>
+                  {article.image ? (
+                    <img src={getImageUrl(article.image)} alt={article.title} className="blog-card__thumb-img" />
+                  ) : null}
                   <span className="blog-card__category">{article.category}</span>
                 </div>
                 <div className="blog-card__content">

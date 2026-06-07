@@ -21,6 +21,11 @@ export default function GalleryPage() {
 
   const setItemRef = useMultiScrollReveal(filteredItems.length);
 
+  const getImageUrl = (path) => {
+    if (!path) return '';
+    return path.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : path;
+  };
+
   return (
     <main className="gallery-page" id="gallery-page">
       {/* Hero Header */}
@@ -77,16 +82,20 @@ export default function GalleryPage() {
                 className={`gallery-item card scroll-reveal scroll-reveal--delay-${(idx % 4) + 1}`}
                 onClick={() => setActiveLightboxItem(item)}
               >
-                <div 
+              <div
                   className="gallery-item__image"
                   style={{ background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light))' }}
                 >
-                  <Sparkles size={24} className="decor-spark" />
+                  {item.image ? (
+                    <img src={getImageUrl(item.image)} alt={item.title} className="gallery-item__img" />
+                  ) : (
+                    <Sparkles size={24} className="decor-spark" />
+                  )}
                   <div className="gallery-item__overlay">
                     <span className="gallery-item__category">{item.category}</span>
                     <h4>{item.title}</h4>
                     <span className="gallery-item__date">
-                      <Calendar size={12} /> 
+                      <Calendar size={12} />
                       {new Date(item.date).toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}
                     </span>
                   </div>
@@ -105,11 +114,15 @@ export default function GalleryPage() {
           </button>
           
           <div className="lightbox-content card" onClick={(e) => e.stopPropagation()}>
-            <div 
+            <div
               className="lightbox-image"
               style={{ background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light))' }}
             >
-              <Sparkles size={48} className="decor-spark" />
+              {activeLightboxItem.image ? (
+                <img src={getImageUrl(activeLightboxItem.image)} alt={activeLightboxItem.title} />
+              ) : (
+                <Sparkles size={48} className="decor-spark" />
+              )}
             </div>
             
             <div className="lightbox-info">

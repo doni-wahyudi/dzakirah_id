@@ -43,6 +43,15 @@
   opacity: 0.35;
 }
 
+.gallery-item__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .gallery-item__overlay {
   position: absolute;
   top: 0;
@@ -140,6 +149,13 @@
 .lightbox-image .decor-spark {
   opacity: 0.35;
   animation: rotateSubtle 20s linear infinite;
+}
+
+.lightbox-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .lightbox-info {

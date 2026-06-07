@@ -96,11 +96,22 @@
   justify-content: center;
   color: var(--color-white);
   box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
 }
 
 .post-hero-image .decor-icon {
   opacity: 0.3;
   animation: rotateSubtle 20s linear infinite;
+}
+
+.post-hero-image__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Rich Typography inside Content */

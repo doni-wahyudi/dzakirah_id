@@ -10,6 +10,11 @@ export default function BlogPost() {
   const post = articles.find((a) => a.slug === slug);
   const revealRef = useScrollReveal();
 
+  const getImageUrl = (path) => {
+    if (!path) return '';
+    return path.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : path;
+  };
+
   if (!post) {
     return (
       <div className="blog-error container">
@@ -69,11 +74,15 @@ export default function BlogPost() {
               </span>
             </div>
 
-            <div 
+            <div
               className="post-hero-image"
               style={{ background: 'linear-gradient(135deg, var(--color-primary-lighter), var(--color-secondary-light))' }}
             >
-              <Sparkles size={48} className="decor-icon" />
+              {post.image ? (
+                <img src={getImageUrl(post.image)} alt={post.title} className="post-hero-image__img" />
+              ) : (
+                <Sparkles size={48} className="decor-icon" />
+              )}
             </div>
 
             <div className="post-content">

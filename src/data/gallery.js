@@ -5,7 +5,7 @@ export const galleryItems = [
     event: 'Kajian Mental Health',
     date: '2026-03-15',
     category: 'Mental Health',
-    image: null,
+    image: '/images/blog-mental-health.png',
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const galleryItems = [
     event: 'Workshop Pranikah Batch 5',
     date: '2026-02-20',
     category: 'Pranikah',
-    image: null,
+    image: '/images/blog-pranikah.png',
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const galleryItems = [
     event: 'Gathering Bulanan',
     date: '2026-03-01',
     category: 'Komunitas',
-    image: null,
+    image: '/images/gallery-community.png',
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export const galleryItems = [
     event: 'Kajian Parenting Batch 3',
     date: '2026-01-18',
     category: 'Parenting',
-    image: null,
+    image: '/images/blog-parenting.png',
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export const galleryItems = [
     event: 'Program Jumat Berkah',
     date: '2026-02-14',
     category: 'Belajar Sedekah',
-    image: null,
+    image: '/images/gallery-community.png',
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export const galleryItems = [
     event: 'Workshop Journaling',
     date: '2026-01-25',
     category: 'Mental Health',
-    image: null,
+    image: '/images/blog-mental-health.png',
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ export const galleryItems = [
     event: 'Talkshow Pranikah',
     date: '2025-12-10',
     category: 'Pranikah',
-    image: null,
+    image: '/images/blog-pranikah.png',
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ export const galleryItems = [
     event: 'Self-Care Workshop',
     date: '2025-12-20',
     category: 'Komunitas',
-    image: null,
+    image: '/images/gallery-community.png',
   },
   {
     id: 9,
@@ -69,7 +69,7 @@ export const galleryItems = [
     event: 'Program Belajar Sedekah',
     date: '2025-11-15',
     category: 'Belajar Sedekah',
-    image: null,
+    image: '/images/gallery-community.png',
   },
   {
     id: 10,
@@ -77,7 +77,7 @@ export const galleryItems = [
     event: 'Kajian Spesial Akhir Tahun',
     date: '2025-12-28',
     category: 'Komunitas',
-    image: null,
+    image: '/images/gallery-community.png',
   },
   {
     id: 11,
@@ -85,7 +85,7 @@ export const galleryItems = [
     event: 'Workshop Mental Health',
     date: '2025-11-08',
     category: 'Mental Health',
-    image: null,
+    image: '/images/blog-mental-health.png',
   },
   {
     id: 12,
@@ -93,6 +93,6 @@ export const galleryItems = [
     event: 'Kelas Parenting Batch 2',
     date: '2025-10-22',
     category: 'Parenting',
-    image: null,
+    image: '/images/blog-parenting.png',
   },
 ];

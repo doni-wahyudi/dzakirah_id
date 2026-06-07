@@ -1,9 +1,26 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, Mail, Send } from 'lucide-react';
 import Instagram from '../Icons/Instagram';
 import './Footer.css';
 
 export default function Footer() {
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSent, setNewsletterSent] = useState(false);
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+
+    const msg = encodeURIComponent(
+      `Assalamu'alaikum Admin Dzakirah 🌷\n\nSaya ingin mendaftarkan email untuk info & update kegiatan Dzakirah.\n\nEmail: ${newsletterEmail}\n\nTerima kasih!`
+    );
+    window.open(`https://wa.me/6282269665134?text=${msg}`, '_blank', 'noopener,noreferrer');
+    setNewsletterSent(true);
+    setNewsletterEmail('');
+    setTimeout(() => setNewsletterSent(false), 4000);
+  };
+
   return (
     <footer className="footer" id="footer">
       <div className="container">
@@ -15,7 +32,7 @@ export default function Footer() {
               <span className="footer__logo-dot">.id</span>
             </Link>
             <p className="footer__tagline">
-              Ruang Pulih & Tumbuh untuk Perempuan 🌷
+              Ruang Pulih &amp; Tumbuh untuk Perempuan 🌷
             </p>
             <p className="footer__desc">
               Komunitas Muslimah Indonesia yang berfokus pada Mental Health, Pranikah, dan Parenting. Est. 2020, Bandar Lampung.
@@ -74,13 +91,24 @@ export default function Footer() {
               </li>
             </ul>
             <div className="footer__newsletter">
-              <p className="footer__newsletter-label">Newsletter</p>
-              <div className="footer__newsletter-input">
-                <input type="email" placeholder="Email kamu..." id="footer-newsletter-email" />
-                <button className="footer__newsletter-btn" id="footer-newsletter-btn" aria-label="Subscribe">
-                  <Send size={16} />
-                </button>
-              </div>
+              <p className="footer__newsletter-label">Info &amp; Update Kegiatan</p>
+              {newsletterSent ? (
+                <p className="footer__newsletter-success">✅ Terima kasih! Admin akan segera menghubungimu. 🌷</p>
+              ) : (
+                <form className="footer__newsletter-input" onSubmit={handleNewsletterSubmit}>
+                  <input
+                    type="email"
+                    placeholder="Email kamu..."
+                    id="footer-newsletter-email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    required
+                  />
+                  <button type="submit" className="footer__newsletter-btn" id="footer-newsletter-btn" aria-label="Daftar Update">
+                    <Send size={16} />
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

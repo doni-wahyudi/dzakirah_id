@@ -30,17 +30,29 @@ export default function ContactPage() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API request
+
+    // Build the WhatsApp message from form fields
+    const waMessage = encodeURIComponent(
+      `Assalamu'alaikum Admin Dzakirah 🌷\n\n` +
+      `Nama: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Perihal: ${formData.subject}\n\n` +
+      `Pesan:\n${formData.message}`
+    );
+    const waUrl = `https://wa.me/6282269665134?text=${waMessage}`;
+
+    // Short delay for loading feel, then open WhatsApp
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus('success');
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
+
       // Reset status after 5s
       setTimeout(() => setSubmitStatus(null), 5000);
-    }, 1500);
+    }, 600);
   };
+
 
   return (
     <main className="contact-page" id="contact-page">
@@ -176,16 +188,16 @@ export default function ContactPage() {
                     className="btn btn--primary btn--full btn--pill"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Mengirim...' : (
+                    {isSubmitting ? 'Menyiapkan Pesan...' : (
                       <>
-                        Kirim Pesan <Send size={16} />
+                        Kirim via WhatsApp <Send size={16} />
                       </>
                     )}
                   </button>
 
                   {submitStatus === 'success' && (
                     <div className="form-status form-status--success">
-                      <p>✨ Pesanmu berhasil dikirim! Jazakillahu khairan.</p>
+                      <p>✅ WhatsApp telah dibuka dengan pesanmu! Jazakillahu khairan, kami akan segera merespons. 🌷</p>
                     </div>
                   )}
                 </form>

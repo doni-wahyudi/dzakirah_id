@@ -22,6 +22,7 @@ Mengenal diri sendiri bukan sekadar tahu apa yang kita suka atau tidak suka. Leb
 
 Ingat, perjalanan ini bukanlah sprint melainkan marathon. Bersabarlah dengan diri sendiri, karena setiap langkah kecil adalah kemajuan yang bermakna.`,
     category: 'Mental Health',
+    image: '/images/blog-mental-health.png',
     date: '2026-05-15',
     readTime: '5 menit',
     featured: true,
@@ -47,6 +48,7 @@ Taaruf secara bahasa berarti "saling mengenal". Dalam konteks pranikah, taaruf a
 
 Semoga Allah memudahkan jalan setiap muslimah menuju pernikahan yang penuh keberkahan.`,
     category: 'Pranikah',
+    image: '/images/blog-pranikah.png',
     date: '2026-05-08',
     readTime: '7 menit',
     featured: false,
@@ -72,6 +74,7 @@ Dari Anas bin Malik RA: "Aku telah melayani Rasulullah SAW selama sepuluh tahun,
 
 Menjadi orang tua yang lembut bukan berarti lemah. Justru dibutuhkan kekuatan besar untuk konsisten dalam kelembutan.`,
     category: 'Parenting',
+    image: '/images/blog-parenting.png',
     date: '2026-04-28',
     readTime: '6 menit',
     featured: false,
@@ -99,6 +102,7 @@ Nabi SAW bersabda: "Sesungguhnya tubuhmu memiliki hak atas dirimu" (HR. Bukhari)
 
 Ingat, kamu tidak bisa menuangkan dari gelas yang kosong. Isi dulu gelas dirimu agar bisa memberi kepada orang lain.`,
     category: 'Mental Health',
+    image: '/images/blog-mental-health.png',
     date: '2026-04-15',
     readTime: '4 menit',
     featured: false,
@@ -120,6 +124,7 @@ Ingat, kamu tidak bisa menuangkan dari gelas yang kosong. Isi dulu gelas dirimu 
 
 Semoga setiap keluarga muslimah bisa mengelola keuangan dengan penuh keberkahan dan ridha Allah SWT.`,
     category: 'Pranikah',
+    image: '/images/blog-pranikah.png',
     date: '2026-04-01',
     readTime: '5 menit',
     featured: false,
@@ -146,6 +151,7 @@ Anak tantrum bukan berarti anak nakal. Mereka sedang belajar mengelola emosi yan
 
 "Rabbana hab lana min azwajina wa dzurriyyatina qurrata a'yun..." — Ya Allah, anugerahkan kepada kami pasangan dan keturunan yang menjadi penyejuk mata kami.`,
     category: 'Parenting',
+    image: '/images/blog-parenting.png',
     date: '2026-03-20',
     readTime: '6 menit',
     featured: false,

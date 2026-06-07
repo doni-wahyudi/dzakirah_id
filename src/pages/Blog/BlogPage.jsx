@@ -28,6 +28,11 @@ export default function BlogPage() {
 
   const setArticleRef = useMultiScrollReveal(regularArticles.length);
 
+  const getImageUrl = (path) => {
+    if (!path) return '';
+    return path.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : path;
+  };
+
   return (
     <main className="blog-page" id="blog-page">
       {/* Hero Header */}
@@ -60,6 +65,9 @@ export default function BlogPage() {
                 className="featured-article-card__thumb"
                 style={{ background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light))' }}
               >
+                {featuredArticle.image && (
+                  <img src={getImageUrl(featuredArticle.image)} alt={featuredArticle.title} />
+                )}
                 <span className="category-badge">{featuredArticle.category}</span>
               </div>
               <div className="featured-article-card__content">
@@ -131,10 +139,13 @@ export default function BlogPage() {
                   className={`blog-card card scroll-reveal scroll-reveal--delay-${(idx % 3) + 1}`}
                   id={`blog-card-${article.id}`}
                 >
-                  <div 
-                    className="blog-card__thumb" 
+                  <div
+                    className="blog-card__thumb"
                     style={{ background: `linear-gradient(135deg, var(--color-primary-lighter), var(--color-bg-alt))` }}
                   >
+                    {article.image ? (
+                      <img src={getImageUrl(article.image)} alt={article.title} className="blog-card__thumb-img" />
+                    ) : null}
                     <span className="blog-card__category">{article.category}</span>
                   </div>
                   <div className="blog-card__content">
