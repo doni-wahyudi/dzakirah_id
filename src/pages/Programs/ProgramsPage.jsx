@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
 import ProgramTimeline from '../../components/ProgramTimeline/ProgramTimeline';
 import { programs } from '../../data/programs';
-import '../../pages/About/AboutPage.css';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 export default function ProgramsPage() {
+  useDocumentTitle('Program Kami');
   return (
     <main className="programs-page" id="programs-page">
       <section className="page-hero">

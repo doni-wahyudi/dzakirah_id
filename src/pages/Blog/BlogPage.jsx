@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { BookOpen, Calendar, Clock, ArrowRight, Search, Sparkles } from 'lucide-react';
 import { articles } from '../../data/articles';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
-import '../../pages/About/AboutPage.css'; // sharing page-hero styles
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './BlogPage.css';
 
 const categories = ['Semua', 'Mental Health', 'Pranikah', 'Parenting'];
 
 export default function BlogPage() {
+  useDocumentTitle('Blog & Artikel');
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [searchQuery, setSearchQuery] = useState('');
   

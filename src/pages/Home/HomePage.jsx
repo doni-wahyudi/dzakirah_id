@@ -7,9 +7,11 @@ import { events } from '../../data/events';
 import { articles } from '../../data/articles';
 import { testimonials } from '../../data/testimonials';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './HomePage.css';
 
 export default function HomePage() {
+  useDocumentTitle('');
   const aboutRef = useScrollReveal();
   const timelineRef = useScrollReveal();
   const testimonialRef = useScrollReveal();

@@ -3,7 +3,7 @@ import { Brain, Heart, Users, Sparkles, Calendar, MapPin, ArrowRight, Flower2, C
 import { programs } from '../../data/programs';
 import { events } from '../../data/events';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import '../../pages/About/AboutPage.css'; // sharing page-hero styles
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './ProgramDetail.css';
 
 const iconMap = {
@@ -15,6 +15,7 @@ const iconMap = {
 export default function ProgramDetail() {
   const { slug } = useParams();
   const program = programs.find((p) => p.slug === slug);
+  useDocumentTitle(program ? program.title : 'Program');
   const headerRef = useScrollReveal();
   const detailsRef = useScrollReveal();
 

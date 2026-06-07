@@ -1,19 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, Calendar, Sparkles, X, Heart } from 'lucide-react';
 import { galleryItems } from '../../data/gallery';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
-import '../../pages/About/AboutPage.css'; // sharing page-hero styles
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './GalleryPage.css';
 
 const categories = ['Semua', 'Mental Health', 'Pranikah', 'Parenting', 'Belajar Sedekah', 'Komunitas'];
 
 export default function GalleryPage() {
+  useDocumentTitle('Galeri Kegiatan');
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [activeLightboxItem, setActiveLightboxItem] = useState(null);
 
   const introRef = useScrollReveal();
   const filterRef = useScrollReveal();
+
+  // Close lightbox on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setActiveLightboxItem(null);
+    };
+    if (activeLightboxItem) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeLightboxItem]);
 
   const filteredItems = galleryItems.filter(
     (item) => selectedCategory === 'Semua' || item.category === selectedCategory

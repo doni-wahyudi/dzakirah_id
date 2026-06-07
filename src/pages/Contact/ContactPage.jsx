@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send, MessageSquare, Heart } from 'lucide-react';
 import Instagram from '../../components/Icons/Instagram';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import '../../pages/About/AboutPage.css'; // sharing page-hero styles
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './ContactPage.css';
 
 export default function ContactPage() {
+  useDocumentTitle('Hubungi Kami');
   const [formData, setFormData] = useState({
     name: '',
     email: '',

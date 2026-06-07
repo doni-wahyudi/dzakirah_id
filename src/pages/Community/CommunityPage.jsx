@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Users, Shield, Compass, Heart, ArrowRight, Camera, MessageCircle } from 'lucide-react';
 import Instagram from '../../components/Icons/Instagram';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
-import '../../pages/About/AboutPage.css'; // sharing page-hero styles
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './CommunityPage.css';
 
 const chapters = [
@@ -29,6 +29,7 @@ const perks = [
 ];
 
 export default function CommunityPage() {
+  useDocumentTitle('Komunitas Muslimah');
   const contentRef = useScrollReveal();
   const perksRef = useScrollReveal();
   const joinRef = useScrollReveal();

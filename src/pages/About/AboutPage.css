@@ -2,61 +2,6 @@
    ABOUT PAGE + SHARED PAGE HERO
    ===================================================== */
 
-/* Page Hero (shared across sub-pages) */
-.page-hero {
-  position: relative;
-  padding: calc(var(--navbar-height) + var(--space-16)) 0 var(--space-12);
-  overflow: hidden;
-}
-
-.page-hero__bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 50%, rgba(122, 142, 107, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 30%, rgba(201, 169, 110, 0.06) 0%, transparent 40%),
-    linear-gradient(170deg, #FAF6F0, #F5EFE6);
-  z-index: 0;
-}
-
-.page-hero__content {
-  position: relative;
-  z-index: 1;
-  max-width: 600px;
-}
-
-.page-hero__content h1 {
-  font-size: var(--text-4xl);
-  margin-bottom: var(--space-4);
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.page-hero__content p {
-  font-size: var(--text-lg);
-  color: var(--color-text-secondary);
-  animation: fadeInUp 0.6s 0.1s ease-out both;
-}
-
-/* Breadcrumb */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-4);
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.breadcrumb a {
-  color: var(--color-primary);
-  font-weight: var(--font-weight-medium);
-}
-
-.breadcrumb a:hover {
-  color: var(--color-primary-dark);
-}
-
 /* About Story */
 .about-story {
   display: grid;
@@ -250,9 +195,7 @@
 }
 
 @media (max-width: 768px) {
-  .page-hero {
-    padding-top: calc(var(--space-16) + var(--space-8));
-  }
+
 
   .about-story {
     grid-template-columns: 1fr;

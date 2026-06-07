@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp/FloatingWhatsApp';
+import BackToTop from './components/BackToTop/BackToTop';
 
 // Page Imports
 import HomePage from './pages/Home/HomePage';
@@ -16,6 +17,7 @@ import EventsPage from './pages/Events/EventsPage';
 import GalleryPage from './pages/Gallery/GalleryPage';
 import CharityPage from './pages/Charity/CharityPage';
 import ContactPage from './pages/Contact/ContactPage';
+import NotFoundPage from './pages/NotFound/NotFoundPage';
 
 import './App.css';
 
@@ -58,13 +60,14 @@ function App() {
             <Route path="/belajar-sedekah" element={<CharityPage />} />
             <Route path="/kontak" element={<ContactPage />} />
             
-            {/* Fallback Route */}
-            <Route path="*" element={<HomePage />} />
+            {/* 404 Fallback */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
 
         <Footer />
         <FloatingWhatsApp />
+        <BackToTop />
       </div>
     </Router>
   );

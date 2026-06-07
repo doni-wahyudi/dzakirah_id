@@ -1,19 +1,34 @@
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowLeft, Send, Link as LinkIcon, Sparkles } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Calendar, Clock, ArrowLeft, Send, Link as LinkIcon, Sparkles, Check } from 'lucide-react';
 import { articles } from '../../data/articles';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import '../../pages/About/AboutPage.css'; // sharing page-hero styles
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './BlogPost.css';
 
 export default function BlogPost() {
   const { slug } = useParams();
   const post = articles.find((a) => a.slug === slug);
   const revealRef = useScrollReveal();
+  const [readingProgress, setReadingProgress] = useState(0);
+  const [toastVisible, setToastVisible] = useState(false);
+
+  useDocumentTitle(post ? post.title : 'Artikel');
 
   const getImageUrl = (path) => {
     if (!path) return '';
     return path.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : path;
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setReadingProgress(docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (!post) {
     return (
@@ -32,7 +47,8 @@ export default function BlogPost() {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    alert('Tautan disalin ke papan klip!');
+    setToastVisible(true);
+    setTimeout(() => setToastVisible(false), 3000);
   };
 
   const shareText = `Yuk baca artikel bermanfaat ini: "${post.title}" di Dzakirah.id\n\n`;
@@ -40,6 +56,15 @@ export default function BlogPost() {
 
   return (
     <main className="blog-post-page" id={`blog-post-${post.id}`}>
+      {/* Reading Progress Bar */}
+      <div className="reading-progress-bar" style={{ width: `${readingProgress}%` }} />
+
+      {/* Toast Notification */}
+      {toastVisible && (
+        <div className="toast-notification" role="status">
+          <Check size={14} /> Tautan disalin!
+        </div>
+      )}
       {/* Mini Breadcrumb Header */}
       <div className="post-header-nav container">
         <Link to="/blog" className="back-link">

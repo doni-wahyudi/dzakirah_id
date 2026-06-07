@@ -38,13 +38,39 @@ export default function Footer() {
               Komunitas Muslimah Indonesia yang berfokus pada Mental Health, Pranikah, dan Parenting. Est. 2020, Bandar Lampung.
             </p>
             <div className="footer__socials">
-              <a href="https://instagram.com/dzakirah.id" target="_blank" rel="noopener noreferrer" className="footer__social-link" id="footer-ig-main" aria-label="Instagram @dzakirah.id">
+              <a
+                href="https://instagram.com/dzakirah.id"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__social-link footer__social-link--labeled"
+                id="footer-ig-main"
+                aria-label="Instagram @dzakirah.id"
+                title="Instagram @dzakirah.id"
+              >
                 <Instagram size={18} />
+                <span>@dzakirah.id</span>
               </a>
-              <a href="https://instagram.com/dzakirah.indonesia" target="_blank" rel="noopener noreferrer" className="footer__social-link" id="footer-ig-community" aria-label="Instagram @dzakirah.indonesia">
+              <a
+                href="https://instagram.com/dzakirah.indonesia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__social-link footer__social-link--labeled"
+                id="footer-ig-community"
+                aria-label="Instagram @dzakirah.indonesia"
+                title="Instagram @dzakirah.indonesia"
+              >
                 <Instagram size={18} />
+                <span>@dzakirah.indonesia</span>
               </a>
-              <a href="https://wa.me/6282269665134" target="_blank" rel="noopener noreferrer" className="footer__social-link" id="footer-wa" aria-label="WhatsApp">
+              <a
+                href="https://wa.me/6282269665134"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__social-link"
+                id="footer-wa"
+                aria-label="WhatsApp Admin Dzakirah"
+                title="Chat via WhatsApp"
+              >
                 <MessageCircle size={18} />
               </a>
             </div>

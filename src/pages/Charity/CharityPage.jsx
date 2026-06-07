@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Heart, Sparkles, Gift, Users, ArrowRight, CheckCircle, MessageSquare } from 'lucide-react';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
-import '../../pages/About/AboutPage.css'; // sharing page-hero styles
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './CharityPage.css';
 
 const donationPrograms = [
@@ -26,6 +26,7 @@ const donationPrograms = [
 ];
 
 export default function CharityPage() {
+  useDocumentTitle('Belajar Sedekah');
   const introRef = useScrollReveal();
   const stepRef = useScrollReveal();
   const ctaRef = useScrollReveal();

@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import { Calendar, Clock, MapPin, Sparkles, AlertCircle } from 'lucide-react';
 import { events } from '../../data/events';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
-import '../../pages/About/AboutPage.css'; // sharing page-hero styles
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './EventsPage.css';
 
 export default function EventsPage() {
+  useDocumentTitle('Event & Kajian');
   const upcomingEvents = events.filter((e) => e.isUpcoming);
   const pastEvents = events.filter((e) => !e.isUpcoming);
 
