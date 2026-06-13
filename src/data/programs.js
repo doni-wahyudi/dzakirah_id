@@ -4,10 +4,16 @@ export const programs = [
     slug: 'mental-health',
     title: 'Mental Health',
     tagline: 'Menyembuhkan Diri, Menemukan Kedamaian',
+    focus: 'Pemulihan Diri',
     icon: 'Brain',
     color: '#7A8E6B',
     colorLight: '#D4DEC9',
     description: 'Program kesehatan mental yang dirancang khusus untuk muslimah. Kami menyediakan ruang aman untuk berbagi, belajar mengenali emosi, dan menemukan ketenangan melalui pendekatan islami.',
+    audience: [
+      'Muslimah yang mengalami kecemasan atau burnout',
+      'Siapa saja yang ingin belajar mengenali emosi & regulasi diri',
+      'Muslimah yang ingin menyembuhkan luka batin (self-healing)'
+    ],
     longDescription: `Kesehatan mental adalah fondasi dari kehidupan yang bermakna. Di Dzakirah, kami percaya bahwa setiap perempuan berhak mendapatkan ruang untuk pulih dan tumbuh.
 
 Program Mental Health kami mencakup:
@@ -26,17 +32,22 @@ Kami menggunakan pendekatan yang menggabungkan ilmu psikologi modern dengan nila
     ],
     schedule: 'Setiap Sabtu, 09:00 - 11:00 WIB',
     format: 'Online via Zoom & Offline di Bandar Lampung',
-    journeyText: 'Mulai dari menyembuhkan diri...',
   },
   {
     id: 2,
     slug: 'pranikah',
     title: 'Pranikah',
     tagline: 'Mempersiapkan Kehidupan Baru dengan Ilmu',
+    focus: 'Persiapan Keluarga',
     icon: 'Heart',
     color: '#C4A07C',
     colorLight: '#E8D5CE',
     description: 'Program persiapan pernikahan untuk muslimah yang ingin membangun rumah tangga sakinah, mawaddah, wa rahmah. Belajar dari ahli dan praktisi berpengalaman.',
+    audience: [
+      'Single muslimah yang ingin membekali diri sebelum menikah',
+      'Muslimah yang sedang berproses taaruf atau khitbah',
+      'Mereka yang ingin memahami fiqih munakahat & komunikasi pasutri'
+    ],
     longDescription: `Pernikahan adalah ibadah yang indah, dan persiapan yang matang adalah kunci keberhasilannya. Program Pranikah Dzakirah hadir untuk membekali muslimah dengan ilmu dan kesiapan sebelum melangkah ke jenjang pernikahan.
 
 Program Pranikah kami mencakup:
@@ -56,17 +67,22 @@ Setiap sesi dibawakan oleh ustadzah dan praktisi yang berpengalaman di bidangnya
     ],
     schedule: 'Setiap Minggu, 13:00 - 15:00 WIB',
     format: 'Online via Zoom & Offline di Bandar Lampung',
-    journeyText: 'Mempersiapkan kehidupan baru...',
   },
   {
     id: 3,
     slug: 'parenting',
     title: 'Parenting',
     tagline: 'Menjadi Orang Tua yang Luar Biasa',
+    focus: 'Kepengasuhan',
     icon: 'Users',
     color: '#C49B8C',
     colorLight: '#F0E0D8',
     description: 'Program parenting islami untuk ibu muslimah. Belajar membesarkan generasi sholih/sholihah dengan pendekatan yang penuh kasih sayang dan berbasis dalil.',
+    audience: [
+      'Ibu muslimah yang ingin mendidik anak di era digital',
+      'Calon ibu yang ingin mempelajari gentle parenting berbasis Islam',
+      'Ibu yang butuh support system & menyelaraskan kesehatan mental'
+    ],
     longDescription: `Menjadi ibu adalah amanah termulia dari Allah SWT. Program Parenting Dzakirah hadir untuk mendampingi setiap ibu dalam perjalanan membesarkan anak-anak yang sholih dan sholihah.
 
 Program Parenting kami mencakup:
@@ -86,6 +102,5 @@ Kami menghadirkan narasumber dari berbagai latar belakang: psikolog anak, ustadz
     ],
     schedule: 'Setiap Sabtu, 13:00 - 15:00 WIB',
     format: 'Online via Zoom & Offline di Bandar Lampung',
-    journeyText: 'Menjadi orang tua yang luar biasa.',
   },
 ];

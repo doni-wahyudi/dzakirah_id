@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
-import ProgramTimeline from '../../components/ProgramTimeline/ProgramTimeline';
+import ProgramPaths from '../../components/ProgramPaths/ProgramPaths';
 import { programs } from '../../data/programs';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
@@ -16,7 +16,7 @@ export default function ProgramsPage() {
               <Link to="/">Beranda</Link><span>/</span><span>Program</span>
             </nav>
             <h1>Program Kami</h1>
-            <p>Perjalanan tumbuh dari menyembuhkan diri, mempersiapkan kehidupan baru, hingga menjadi orang tua yang luar biasa.</p>
+            <p>Pilih jalur tumbuhmu: pulihkan diri, persiapkan kehidupan baru, atau bangun keluarga sakinah.</p>
           </div>
         </div>
       </section>
@@ -24,11 +24,11 @@ export default function ProgramsPage() {
       <section className="section">
         <div className="container">
           <div className="section__header">
-            <span className="section__badge"><BookOpen size={14} /> Perjalanan Tumbuhmu</span>
+            <span className="section__badge"><BookOpen size={14} /> Pilar Program Kami</span>
             <h2 className="section__title">Pilih Programmu</h2>
-            <p className="section__subtitle">Setiap langkah adalah bagian dari perjalanan menuju versi terbaik dirimu.</p>
+            <p className="section__subtitle">Setiap jalur dirancang khusus untuk menemani fase hidup dan kebutuhan tumbuhmu.</p>
           </div>
-          <ProgramTimeline programs={programs} />
+          <ProgramPaths programs={programs} />
         </div>
       </section>
     </main>

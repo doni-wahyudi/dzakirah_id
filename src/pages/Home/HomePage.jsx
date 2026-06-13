@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, MapPin, Heart, Users as UsersIcon, Sparkles, BookOpen } from 'lucide-react';
-import ProgramTimeline from '../../components/ProgramTimeline/ProgramTimeline';
+import ProgramPaths from '../../components/ProgramPaths/ProgramPaths';
 import TestimonialWall from '../../components/TestimonialWall/TestimonialWall';
 import { programs } from '../../data/programs';
 import { events } from '../../data/events';
@@ -115,13 +115,13 @@ export default function HomePage() {
                 <BookOpen size={14} />
                 Program Kami
               </span>
-              <h2 className="section__title">Perjalanan Tumbuhmu</h2>
+              <h2 className="section__title">Pilar Program Kami</h2>
               <p className="section__subtitle">
-                Dari menyembuhkan diri, mempersiapkan kehidupan baru, hingga menjadi orang tua yang luar biasa.
+                Pilih jalur tumbuhmu: pulihkan diri, persiapkan kehidupan baru, atau bangun keluarga sakinah.
               </p>
             </div>
           </div>
-          <ProgramTimeline programs={programs} />
+          <ProgramPaths programs={programs} />
         </div>
       </section>
 
