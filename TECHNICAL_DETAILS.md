@@ -36,13 +36,15 @@ The React Router shell handles the following active routes:
 
 ---
 
-## 3. Design System & Theme Tokens ("Earthy Healing")
+## 3. Design System & Theme Tokens ("Blossom Sage")
 
 A calming, cohesive, warm color palette curated specifically for a feminine Muslimah healing space:
-* **Primary (Sage Green)**: `#7A8E6B` — calming, natural, growth-oriented.
-* **Primary Light**: `#A8B99A`
-* **Primary Dark**: `#5A6E4D`
-* **Secondary (Dusty Rose)**: `#C4A07C` — warm, gentle, feminine.
+* **Primary (Light Blossom Pink)**: `#E592A1` — main brand color, gentle, warm, feminine.
+* **Primary Light**: `#F3C2CB`
+* **Primary Dark**: `#B85C6D`
+* **Secondary (Light Sage Green)**: `#7A8E6B` — sub-theme color, calming, natural, growth-oriented.
+* **Secondary Light**: `#A8B99A`
+* **Secondary Dark**: `#5A6E4D`
 * **Accent (Gold)**: `#C9A96E` — premium Islamic elegance.
 * **Background Cream**: `#FAF6F0` — warm off-white background base.
 * **Background Light**: `#F5EFE6`

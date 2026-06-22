@@ -48,7 +48,7 @@
 
 .timeline__item:hover .timeline__dot {
   transform: scale(1.15);
-  box-shadow: 0 0 0 4px var(--color-bg), 0 0 0 6px var(--color-primary-light), 0 4px 12px rgba(122, 142, 107, 0.3);
+  box-shadow: 0 0 0 4px var(--color-bg), 0 0 0 6px var(--color-primary-light), 0 4px 12px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .timeline__card {

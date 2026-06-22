@@ -57,7 +57,7 @@
 .program-path-card:hover {
   transform: translateY(-8px);
   border-color: var(--path-accent-light);
-  box-shadow: 0 12px 30px rgba(45, 42, 38, 0.07), 0 4px 20px rgba(122, 142, 107, 0.1);
+  box-shadow: 0 12px 30px rgba(45, 42, 38, 0.07), 0 4px 20px rgba(var(--color-primary-rgb), 0.1);
 }
 
 .program-path-card:hover .program-path-card__border-top {

@@ -23,7 +23,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(122, 142, 107, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 50%, rgba(var(--color-primary-rgb), 0.12) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 20%, rgba(201, 169, 110, 0.1) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 80%, rgba(196, 155, 140, 0.08) 0%, transparent 50%),
     linear-gradient(170deg, #FAF6F0 0%, #F5EFE6 40%, #EDE8DD 100%);
@@ -90,12 +90,12 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  background: rgba(122, 142, 107, 0.1);
-  border: 1px solid var(--color-primary-light);
+  background: var(--color-secondary-glow);
+  border: 1px solid var(--color-secondary-light);
   border-radius: var(--radius-pill);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-primary-dark);
+  color: var(--color-secondary-dark);
   margin-bottom: var(--space-6);
   animation: fadeInUp 0.8s 0.2s ease-out both;
 }

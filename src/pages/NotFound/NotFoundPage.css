@@ -27,7 +27,7 @@
 .not-found-page__orb--1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(122, 142, 107, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--color-primary-rgb), 0.18), transparent 70%);
   top: -100px;
   right: -100px;
 }

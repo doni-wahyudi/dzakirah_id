@@ -63,15 +63,19 @@ input, textarea, select {
 /* ----- Design Tokens (CSS Custom Properties) ----- */
 :root {
   /* Colors — Earthy Healing Palette */
-  --color-primary: #7A8E6B;
-  --color-primary-light: #A8B99A;
-  --color-primary-lighter: #D4DEC9;
-  --color-primary-dark: #5A6E4D;
-  --color-primary-glow: rgba(122, 142, 107, 0.15);
+  --color-primary-rgb: 229, 146, 161; /* #E592A1 */
+  --color-primary: #E592A1;
+  --color-primary-light: #F3C2CB;
+  --color-primary-lighter: #FAEAEB;
+  --color-primary-dark: #B85C6D;
+  --color-primary-glow: rgba(var(--color-primary-rgb), 0.15);
 
-  --color-secondary: #C4A07C;
-  --color-secondary-light: #D9C4A8;
-  --color-secondary-dark: #A8845E;
+  --color-secondary-rgb: 122, 142, 107; /* #7A8E6B */
+  --color-secondary: #7A8E6B;
+  --color-secondary-light: #A8B99A;
+  --color-secondary-lighter: #D4DEC9;
+  --color-secondary-dark: #5A6E4D;
+  --color-secondary-glow: rgba(var(--color-secondary-rgb), 0.15);
 
   --color-accent: #C9A96E;
   --color-accent-light: #E0CFA0;
@@ -158,7 +162,7 @@ input, textarea, select {
   --shadow-md: 0 4px 12px rgba(45, 42, 38, 0.08);
   --shadow-lg: 0 8px 24px rgba(45, 42, 38, 0.1);
   --shadow-xl: 0 16px 48px rgba(45, 42, 38, 0.12);
-  --shadow-glow-primary: 0 4px 20px rgba(122, 142, 107, 0.25);
+  --shadow-glow-primary: 0 4px 20px rgba(var(--color-primary-rgb), 0.25);
   --shadow-glow-accent: 0 4px 20px rgba(201, 169, 110, 0.25);
 
   /* Transitions */
@@ -229,13 +233,13 @@ p {
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  background: var(--color-primary-glow);
-  border: 1px solid var(--color-primary-light);
+  background: var(--color-secondary-glow);
+  border: 1px solid var(--color-secondary-light);
   border-radius: var(--radius-pill);
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-primary-dark);
+  color: var(--color-secondary-dark);
   margin-bottom: var(--space-4);
   letter-spacing: 0.03em;
 }
@@ -282,12 +286,12 @@ p {
 
 .btn--secondary {
   background: transparent;
-  color: var(--color-primary);
-  border: 1.5px solid var(--color-primary);
+  color: var(--color-secondary);
+  border: 1.5px solid var(--color-secondary);
 }
 
 .btn--secondary:hover {
-  background: var(--color-primary-glow);
+  background: var(--color-secondary-glow);
   transform: translateY(-2px);
 }
 

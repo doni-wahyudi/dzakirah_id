@@ -6,8 +6,8 @@ export const programs = [
     tagline: 'Menyembuhkan Diri, Menemukan Kedamaian',
     focus: 'Pemulihan Diri',
     icon: 'Brain',
-    color: '#7A8E6B',
-    colorLight: '#D4DEC9',
+    color: '#E592A1',
+    colorLight: '#FAEAEB',
     description: 'Program kesehatan mental yang dirancang khusus untuk muslimah. Kami menyediakan ruang aman untuk berbagi, belajar mengenali emosi, dan menemukan ketenangan melalui pendekatan islami.',
     audience: [
       'Muslimah yang mengalami kecemasan atau burnout',
@@ -40,8 +40,8 @@ Kami menggunakan pendekatan yang menggabungkan ilmu psikologi modern dengan nila
     tagline: 'Mempersiapkan Kehidupan Baru dengan Ilmu',
     focus: 'Persiapan Keluarga',
     icon: 'Heart',
-    color: '#C4A07C',
-    colorLight: '#E8D5CE',
+    color: '#7A8E6B',
+    colorLight: '#D4DEC9',
     description: 'Program persiapan pernikahan untuk muslimah yang ingin membangun rumah tangga sakinah, mawaddah, wa rahmah. Belajar dari ahli dan praktisi berpengalaman.',
     audience: [
       'Single muslimah yang ingin membekali diri sebelum menikah',
