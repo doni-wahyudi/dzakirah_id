@@ -13,7 +13,7 @@
 .not-found-page__bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #FAF6F0 0%, #F5EFE6 60%, #EDE8E0 100%);
+  background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-bg-alt) 60%, #F2DCDD 100%);
   z-index: 0;
 }
 

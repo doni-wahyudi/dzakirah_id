@@ -18,6 +18,8 @@ import GalleryPage from './pages/Gallery/GalleryPage';
 import CharityPage from './pages/Charity/CharityPage';
 import ContactPage from './pages/Contact/ContactPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
+import JournalPromptsPage from './pages/JournalPrompts/JournalPromptsPage';
+import TaarufQuizPage from './pages/TaarufQuiz/TaarufQuizPage';
 
 import './App.css';
 
@@ -48,6 +50,10 @@ function App() {
             {/* Programs Routing */}
             <Route path="/program" element={<ProgramsPage />} />
             <Route path="/program/:slug" element={<ProgramDetail />} />
+            
+            {/* Interactive features */}
+            <Route path="/ruang-renung" element={<JournalPromptsPage />} />
+            <Route path="/quiz-pranikah" element={<TaarufQuizPage />} />
             
             <Route path="/komunitas" element={<CommunityPage />} />
             

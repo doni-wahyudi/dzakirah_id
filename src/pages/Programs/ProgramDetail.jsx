@@ -94,6 +94,37 @@ export default function ProgramDetail() {
                   ))}
                 </div>
               </div>
+
+              {/* Interactive Tool CTAs */}
+              {program.slug === 'mental-health' && (
+                <div className="program-interactive-cta card">
+                  <div className="cta-icon-wrap" style={{ backgroundColor: `${program.color}15`, color: program.color }}>
+                    <Brain size={24} />
+                  </div>
+                  <div className="cta-content">
+                    <h4>Butuh Panduan Menulis Jurnal Harian?</h4>
+                    <p>Coba gunakan generator prompt jurnal harian kami di Ruang Renung untuk membantumu menyalurkan emosi.</p>
+                    <Link to="/ruang-renung" className="btn btn--primary btn--sm btn--pill" style={{ backgroundColor: program.color }}>
+                      Buka Ruang Renung <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {program.slug === 'pranikah' && (
+                <div className="program-interactive-cta card">
+                  <div className="cta-icon-wrap" style={{ backgroundColor: `${program.color}15`, color: program.color }}>
+                    <Heart size={24} />
+                  </div>
+                  <div className="cta-content">
+                    <h4>Uji Kesiapan Pranikahmu</h4>
+                    <p>Cari tahu sejauh mana kesiapan bekal ilmu, mental, dan emosimu melalui Quiz Kesiapan Pranikah interaktif kami.</p>
+                    <Link to="/quiz-pranikah" className="btn btn--primary btn--sm btn--pill" style={{ backgroundColor: program.color }}>
+                      Mulai Quiz Kesiapan <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Right side: quick info widget */}

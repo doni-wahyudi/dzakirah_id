@@ -62,46 +62,46 @@ input, textarea, select {
 
 /* ----- Design Tokens (CSS Custom Properties) ----- */
 :root {
-  /* Colors — Earthy Healing Palette */
-  --color-primary-rgb: 229, 146, 161; /* #E592A1 */
-  --color-primary: #E592A1;
-  --color-primary-light: #F3C2CB;
-  --color-primary-lighter: #FAEAEB;
-  --color-primary-dark: #B85C6D;
+  /* Colors — Soft Blossom Healing Palette */
+  --color-primary-rgb: 209, 91, 112; /* #D15B70 */
+  --color-primary: #D15B70;
+  --color-primary-light: #E68A9B;
+  --color-primary-lighter: #FBECEF;
+  --color-primary-dark: #A83C50;
   --color-primary-glow: rgba(var(--color-primary-rgb), 0.15);
 
-  --color-secondary-rgb: 122, 142, 107; /* #7A8E6B */
-  --color-secondary: #7A8E6B;
-  --color-secondary-light: #A8B99A;
-  --color-secondary-lighter: #D4DEC9;
-  --color-secondary-dark: #5A6E4D;
+  --color-secondary-rgb: 110, 133, 97; /* #6E8561 */
+  --color-secondary: #6E8561;
+  --color-secondary-light: #96AC88;
+  --color-secondary-lighter: #E2EADF;
+  --color-secondary-dark: #4D6041;
   --color-secondary-glow: rgba(var(--color-secondary-rgb), 0.15);
 
-  --color-accent: #C9A96E;
-  --color-accent-light: #E0CFA0;
-  --color-accent-glow: rgba(201, 169, 110, 0.2);
+  --color-accent: #C59E5E;
+  --color-accent-light: #DDC08E;
+  --color-accent-glow: rgba(197, 158, 94, 0.2);
 
-  --color-rose: #C49B8C;
-  --color-rose-light: #E8D5CE;
-  --color-rose-dark: #A07868;
+  --color-rose: #D49FA0;
+  --color-rose-light: #F7D6D7;
+  --color-rose-dark: #A66E70;
 
-  --color-bg: #FAF6F0;
-  --color-bg-alt: #F5EFE6;
+  --color-bg: #FFF0F2;
+  --color-bg-alt: #FCE3E7;
   --color-bg-card: #FFFFFF;
-  --color-bg-dark: #2D3328;
-  --color-bg-dark-alt: #3A3F34;
+  --color-bg-dark: #362225;
+  --color-bg-dark-alt: #422B2E;
 
-  --color-text: #2D2A26;
-  --color-text-secondary: #6B6560;
-  --color-text-muted: #9E9890;
-  --color-text-light: #F5EFE6;
-  --color-text-on-dark: #E8E2D8;
+  --color-text: #352527;
+  --color-text-secondary: #725B5E;
+  --color-text-muted: #A38C8F;
+  --color-text-light: #FCE3E7;
+  --color-text-on-dark: #FAE3E7;
 
   --color-white: #FFFFFF;
   --color-black: #1A1815;
-  --color-border: #E5DFD6;
-  --color-border-dark: #4A4F44;
-  --color-divider: #EDE8E0;
+  --color-border: #EED6DA;
+  --color-border-dark: #5E4044;
+  --color-divider: #F6E3E6;
 
   --color-success: #6B9E5A;
   --color-warning: #D4A843;
@@ -497,9 +497,9 @@ p {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(122, 142, 107, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 30%, rgba(201, 169, 110, 0.06) 0%, transparent 40%),
-    linear-gradient(170deg, #FAF6F0, #F5EFE6);
+    radial-gradient(ellipse at 30% 50%, rgba(var(--color-secondary-rgb), 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(197, 158, 94, 0.06) 0%, transparent 40%),
+    linear-gradient(170deg, var(--color-bg), var(--color-bg-alt));
   z-index: 0;
 }
 

@@ -13,6 +13,8 @@ const mainNavLinks = [
       { path: '/program/mental-health', label: 'Mental Health' },
       { path: '/program/pranikah', label: 'Pranikah' },
       { path: '/program/parenting', label: 'Parenting' },
+      { path: '/ruang-renung', label: 'Ruang Renung (Jurnal)' },
+      { path: '/quiz-pranikah', label: 'Quiz Pranikah' },
     ],
   },
   { path: '/komunitas', label: 'Komunitas' },

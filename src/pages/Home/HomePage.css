@@ -24,9 +24,9 @@
   inset: 0;
   background:
     radial-gradient(ellipse at 20% 50%, rgba(var(--color-primary-rgb), 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(201, 169, 110, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(196, 155, 140, 0.08) 0%, transparent 50%),
-    linear-gradient(170deg, #FAF6F0 0%, #F5EFE6 40%, #EDE8DD 100%);
+    radial-gradient(ellipse at 80% 20%, rgba(197, 158, 94, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(212, 159, 160, 0.08) 0%, transparent 50%),
+    linear-gradient(170deg, var(--color-bg) 0%, var(--color-bg-alt) 40%, #F2DCDD 100%);
 }
 
 .hero__pattern {
@@ -378,7 +378,7 @@
 
 /* ===== CHARITY CTA ===== */
 .charity-cta {
-  background: linear-gradient(135deg, #FAF6F0 0%, #F5EDE0 100%);
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
 }
 
 .charity-cta__inner {

@@ -8,6 +8,7 @@ import { articles } from '../../data/articles';
 import { testimonials } from '../../data/testimonials';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import HealingVerses from '../../components/HealingVerses/HealingVerses';
 import './HomePage.css';
 
 export default function HomePage() {
@@ -122,6 +123,13 @@ export default function HomePage() {
             </div>
           </div>
           <ProgramPaths programs={programs} />
+        </div>
+      </section>
+
+      {/* ===== HEALING VERSES WIDGET ===== */}
+      <section className="section" id="healing-verses-section">
+        <div className="container">
+          <HealingVerses />
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send, MessageSquare, Heart } from 'lucide-react';
 import Instagram from '../../components/Icons/Instagram';
+import FaqSection from '../../components/FaqSection/FaqSection';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './ContactPage.css';
@@ -206,6 +207,13 @@ export default function ContactPage() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Accordion Section */}
+      <section className="section section--alt">
+        <div className="container">
+          <FaqSection />
         </div>
       </section>
     </main>

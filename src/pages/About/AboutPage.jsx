@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Heart, Eye, Target, Sparkles, Flower2, Users, ArrowRight } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import { facilitators } from '../../data/facilitators';
 import './AboutPage.css';
 
 const values = [
@@ -16,6 +17,7 @@ export default function AboutPage() {
   const storyRef = useScrollReveal();
   const visionRef = useScrollReveal();
   const valuesRef = useScrollReveal();
+  const facilitatorsRef = useScrollReveal();
 
   return (
     <main className="about-page" id="about-page">
@@ -104,6 +106,30 @@ export default function AboutPage() {
                 </div>
                 <h4>{v.title}</h4>
                 <p>{v.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Facilitators Spotlight */}
+      <section className="section section--alt" ref={facilitatorsRef}>
+        <div className="container">
+          <div className="section__header scroll-reveal">
+            <span className="section__badge"><Users size={14} /> Tim Dzakirah</span>
+            <h2 className="section__title">Fasilitator & Mentor</h2>
+            <p className="section__subtitle">Didukung oleh para praktisi, psikolog, dan ustadzah yang ahli di bidangnya.</p>
+          </div>
+          <div className="facilitators-grid scroll-reveal">
+            {facilitators.map((fac) => (
+              <div key={fac.id} className="facilitator-card card">
+                <div className="facilitator-card__avatar">
+                  {fac.avatar}
+                </div>
+                <h3>{fac.name}</h3>
+                <span className="facilitator-card__role">{fac.role}</span>
+                <span className="facilitator-card__specialty">{fac.specialty}</span>
+                <p className="facilitator-card__bio">{fac.bio}</p>
               </div>
             ))}
           </div>
