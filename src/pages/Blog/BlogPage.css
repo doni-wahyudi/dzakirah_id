@@ -279,3 +279,66 @@
     width: 100%;
   }
 }
+
+/* Bookmark Buttons styling (Saved articles hub) */
+.blog-card__bookmark-btn {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-spring);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.blog-card__bookmark-btn:hover {
+  transform: scale(1.1);
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+}
+
+.blog-card__bookmark-btn.active {
+  background-color: var(--color-primary-lighter);
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+}
+
+.featured-card__bookmark-btn {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-spring);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.featured-card__bookmark-btn:hover {
+  transform: scale(1.1);
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+}
+
+.featured-card__bookmark-btn.active {
+  background-color: var(--color-primary-lighter);
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+}

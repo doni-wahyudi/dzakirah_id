@@ -1,24 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Calendar, Clock, ArrowRight, Search, Sparkles } from 'lucide-react';
+import { BookOpen, Calendar, Clock, ArrowRight, Search, Sparkles, Bookmark } from 'lucide-react';
 import { articles } from '../../data/articles';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './BlogPage.css';
 
-const categories = ['Semua', 'Mental Health', 'Pranikah', 'Parenting'];
+const categories = ['Semua', 'Mental Health', 'Pranikah', 'Parenting', 'Tersimpan'];
 
 export default function BlogPage() {
   useDocumentTitle('Blog & Artikel');
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [searchQuery, setSearchQuery] = useState('');
+  const [bookmarks, setBookmarks] = useState([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('dzakirah_bookmarks');
+    if (saved) {
+      setBookmarks(JSON.parse(saved));
+    }
+  }, []);
+
+  const toggleBookmark = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    let updated;
+    if (bookmarks.includes(id)) {
+      updated = bookmarks.filter(bId => bId !== id);
+    } else {
+      updated = [...bookmarks, id];
+    }
+    setBookmarks(updated);
+    localStorage.setItem('dzakirah_bookmarks', JSON.stringify(updated));
+  };
   
   const heroRef = useScrollReveal();
   const listRef = useScrollReveal();
 
   // Filter articles by category and search query
   const filteredArticles = articles.filter((art) => {
-    const matchesCategory = selectedCategory === 'Semua' || art.category === selectedCategory;
+    const matchesCategory = 
+      selectedCategory === 'Semua' 
+        ? true 
+        : selectedCategory === 'Tersimpan' 
+          ? bookmarks.includes(art.id) 
+          : art.category === selectedCategory;
+          
     const matchesSearch = art.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           art.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -70,6 +97,13 @@ export default function BlogPage() {
                   <img src={getImageUrl(featuredArticle.image)} alt={featuredArticle.title} />
                 )}
                 <span className="category-badge">{featuredArticle.category}</span>
+                <button 
+                  className={`featured-card__bookmark-btn ${bookmarks.includes(featuredArticle.id) ? 'active' : ''}`}
+                  onClick={(e) => toggleBookmark(featuredArticle.id, e)}
+                  title={bookmarks.includes(featuredArticle.id) ? 'Hapus bookmark' : 'Simpan artikel'}
+                >
+                  <Bookmark size={20} fill={bookmarks.includes(featuredArticle.id) ? 'currentColor' : 'none'} />
+                </button>
               </div>
               <div className="featured-article-card__content">
                 <span className="featured-article-card__date">
@@ -148,6 +182,13 @@ export default function BlogPage() {
                       <img src={getImageUrl(article.image)} alt={article.title} className="blog-card__thumb-img" />
                     ) : null}
                     <span className="blog-card__category">{article.category}</span>
+                    <button 
+                      className={`blog-card__bookmark-btn ${bookmarks.includes(article.id) ? 'active' : ''}`}
+                      onClick={(e) => toggleBookmark(article.id, e)}
+                      title={bookmarks.includes(article.id) ? 'Hapus bookmark' : 'Simpan artikel'}
+                    >
+                      <Bookmark size={16} fill={bookmarks.includes(article.id) ? 'currentColor' : 'none'} />
+                    </button>
                   </div>
                   <div className="blog-card__content">
                     <h4 className="blog-card__title">{article.title}</h4>

@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Calendar, Clock, ArrowLeft, Send, Link as LinkIcon, Sparkles, Check } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, Send, Link as LinkIcon, Sparkles, Check, Bookmark } from 'lucide-react';
 import { articles } from '../../data/articles';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
@@ -12,6 +12,26 @@ export default function BlogPost() {
   const revealRef = useScrollReveal();
   const [readingProgress, setReadingProgress] = useState(0);
   const [toastVisible, setToastVisible] = useState(false);
+  const [bookmarks, setBookmarks] = useState([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('dzakirah_bookmarks');
+    if (saved) {
+      setBookmarks(JSON.parse(saved));
+    }
+  }, []);
+
+  const toggleBookmark = () => {
+    if (!post) return;
+    let updated;
+    if (bookmarks.includes(post.id)) {
+      updated = bookmarks.filter(id => id !== post.id);
+    } else {
+      updated = [...bookmarks, post.id];
+    }
+    setBookmarks(updated);
+    localStorage.setItem('dzakirah_bookmarks', JSON.stringify(updated));
+  };
 
   useDocumentTitle(post ? post.title : 'Artikel');
 
@@ -97,6 +117,14 @@ export default function BlogPost() {
                 <Clock size={14} /> 
                 {post.readTime} membaca
               </span>
+              <button 
+                onClick={toggleBookmark}
+                className={`post-bookmark-btn ${bookmarks.includes(post.id) ? 'active' : ''}`}
+                title={bookmarks.includes(post.id) ? 'Hapus dari Tersimpan' : 'Simpan Artikel'}
+              >
+                <Bookmark size={14} fill={bookmarks.includes(post.id) ? 'currentColor' : 'none'} />
+                <span>{bookmarks.includes(post.id) ? 'Tersimpan' : 'Simpan'}</span>
+              </button>
             </div>
 
             <div

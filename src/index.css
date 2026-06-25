@@ -464,16 +464,18 @@ p {
 
 /* ----- Scrollbar Styling ----- */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-alt);
+  background: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-primary-light);
   border-radius: var(--radius-pill);
+  border: 2.5px solid var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -593,5 +595,50 @@ select:focus-visible {
     transform: translateX(50%);
     width: max-content;
     max-width: 90vw;
+  }
+}
+
+/* ----- Glassmorphism Card Style (C) ----- */
+.card--glass {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(238, 214, 218, 0.5) !important;
+  box-shadow: 0 8px 32px 0 rgba(166, 63, 82, 0.04) !important;
+}
+
+/* ----- Background Blossom Floating Particle Effect (A) ----- */
+.petal-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.petal-particle {
+  position: absolute;
+  font-size: 1.25rem;
+  top: -20px;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+  animation: petal-fall-fade linear infinite;
+}
+
+@keyframes petal-fall-fade {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh) translateX(100px) rotate(360deg);
+    opacity: 0;
   }
 }

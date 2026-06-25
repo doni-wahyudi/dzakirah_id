@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, MapPin, Sparkles, AlertCircle } from 'lucide-react';
+import { Calendar, Clock, MapPin, Sparkles, AlertCircle, X, User, Phone } from 'lucide-react';
 import { events } from '../../data/events';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
@@ -7,6 +8,52 @@ import './EventsPage.css';
 
 export default function EventsPage() {
   useDocumentTitle('Event & Kajian');
+  const [registeringEvent, setRegisteringEvent] = useState(null);
+  const [formData, setFormData] = useState({ name: '', whatsapp: '', city: '' });
+  const [formError, setFormError] = useState('');
+
+  const openRegisterModal = (event) => {
+    setRegisteringEvent(event);
+    setFormData({ name: '', whatsapp: '', city: '' });
+    setFormError('');
+  };
+
+  const getImageUrl = (path) => {
+    if (!path) return '';
+    return path.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : path;
+  };
+
+  const handleModalSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.whatsapp.trim() || !formData.city.trim()) {
+      setFormError('Semua kolom wajib diisi.');
+      return;
+    }
+    
+    const phoneRegex = /^[0-9+()-\s]{8,18}$/;
+    if (!phoneRegex.test(formData.whatsapp)) {
+      setFormError('Nomor WhatsApp tidak valid.');
+      return;
+    }
+
+    const adminPhone = '6282269665134';
+    const message = `Assalamualaikum admin Dzakirah.id, saya ingin mendaftar untuk event:
+*${registeringEvent.title}*
+
+*Data Pendaftar:*
+- Nama Lengkap: ${formData.name.trim()}
+- No. WhatsApp: ${formData.whatsapp.trim()}
+- Domisili / Kota: ${formData.city.trim()}
+
+Mohon informasi selanjutnya untuk konfirmasi pendaftaran. Terima kasih!`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const waUrl = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
+    
+    window.open(waUrl, '_blank');
+    setRegisteringEvent(null);
+  };
+
   const upcomingEvents = events.filter((e) => e.isUpcoming);
   const pastEvents = events.filter((e) => !e.isUpcoming);
 
@@ -77,14 +124,12 @@ export default function EventsPage() {
                   </div>
 
                   <div className="event-list-item__action">
-                    <a 
-                      href="https://wa.me/6282269665134" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <button 
+                      onClick={() => openRegisterModal(event)}
                       className="btn btn--primary btn--pill"
                     >
                       Daftar Kelas
-                    </a>
+                    </button>
                   </div>
                 </div>
               ))}
@@ -126,6 +171,73 @@ export default function EventsPage() {
             </div>
           </div>
         </section>
+      )}
+
+      {/* RSVP Modal Overlay */}
+      {registeringEvent && (
+        <div className="modal-overlay animate-fade-in" onClick={() => setRegisteringEvent(null)}>
+          <div className="modal-container card animate-scale-up" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setRegisteringEvent(null)} aria-label="Close modal">
+              <X size={18} />
+            </button>
+            <div className="modal-header">
+              <img src={getImageUrl('/images/modal-event-banner.png')} alt="Event Banner" className="modal-banner" />
+              <div className="modal-header__content">
+                <span className="category-badge">{registeringEvent.category}</span>
+                <h3>Pendaftaran Event</h3>
+                <p className="event-title-highlight">{registeringEvent.title}</p>
+              </div>
+            </div>
+            <form onSubmit={handleModalSubmit} className="modal-form">
+              <div className="form-group">
+                <label htmlFor="rsvp-name">Nama Lengkap</label>
+                <div className="input-with-icon">
+                  <User size={16} className="input-icon" />
+                  <input 
+                    id="rsvp-name" 
+                    type="text" 
+                    placeholder="Contoh: Fatimah Az-Zahra" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required 
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="rsvp-whatsapp">Nomor WhatsApp</label>
+                <div className="input-with-icon">
+                  <Phone size={16} className="input-icon" />
+                  <input 
+                    id="rsvp-whatsapp" 
+                    type="tel" 
+                    placeholder="Contoh: 081234567890" 
+                    value={formData.whatsapp}
+                    onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                    required 
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="rsvp-city">Domisili / Kota</label>
+                <div className="input-with-icon">
+                  <MapPin size={16} className="input-icon" />
+                  <input 
+                    id="rsvp-city" 
+                    type="text" 
+                    placeholder="Contoh: Bandar Lampung" 
+                    value={formData.city}
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    required 
+                  />
+                </div>
+              </div>
+              {formError && <p className="modal-error-message">{formError}</p>}
+              <button type="submit" className="btn btn--primary btn--pill submit-btn">
+                Kirim Pendaftaran via WhatsApp <Sparkles size={14} style={{ marginLeft: 6 }} />
+              </button>
+            </form>
+          </div>
+        </div>
       )}
     </main>
   );

@@ -79,6 +79,16 @@ export default function JournalPromptsPage() {
               <div className="journal-widget__display-area">
                 {activePrompt ? (
                   <div className={`journal-prompt-paper ${animate ? 'revealed' : ''}`}>
+                    {/* Notebook Binder Rings (D) */}
+                    <div className="notebook-binder-rings">
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                    </div>
+                    
                     <span className="journal-prompt-paper__tag">
                       Kategori: {activePrompt.category}
                     </span>
@@ -95,6 +105,16 @@ export default function JournalPromptsPage() {
                   </div>
                 ) : (
                   <div className="journal-prompt-paper journal-prompt-paper--empty">
+                    {/* Notebook Binder Rings (D) */}
+                    <div className="notebook-binder-rings">
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                      <div className="notebook-ring" />
+                    </div>
+                    
                     <p>“Pikiran yang tidak dituangkan seringkali menumpuk menjadi beban. Tuliskanlah, karena kertas adalah cermin jiwa yang paling sabar mendengar.”</p>
                   </div>
                 )}

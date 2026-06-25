@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Sparkles, Gift, Users, ArrowRight, CheckCircle, MessageSquare } from 'lucide-react';
+import { Heart, Sparkles, Gift, Users, ArrowRight, CheckCircle, MessageSquare, Calculator, Copy, Check } from 'lucide-react';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './CharityPage.css';
@@ -27,13 +28,45 @@ const donationPrograms = [
 
 export default function CharityPage() {
   useDocumentTitle('Belajar Sedekah');
+  const [calcTab, setCalcTab] = useState('income'); // 'income' or 'savings'
+  const [amount, setAmount] = useState('');
+  const [sedekahPercent, setSedekahPercent] = useState(2.5);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+
+  const calcRef = useScrollReveal();
   const introRef = useScrollReveal();
   const stepRef = useScrollReveal();
   const ctaRef = useScrollReveal();
   const setCardRef = useMultiScrollReveal(3);
 
+  const numAmount = parseFloat(amount) || 0;
+  // Standard nisab estimate: 85g gold.
+  // 85g gold * 1.4 million / g = ~119 million savings, or ~7.5 million monthly income.
+  const isNisabReached = calcTab === 'income' ? numAmount >= 7500000 : numAmount >= 119000000;
+  const zakatValue = isNisabReached ? numAmount * 0.025 : 0;
+  const sedekahValue = numAmount * (sedekahPercent / 100);
+
+  const triggerToast = (msg) => {
+    setToastMessage(msg);
+    setToastVisible(true);
+    setTimeout(() => setToastVisible(false), 3000);
+  };
+
+  const handleCopyText = (text, label) => {
+    navigator.clipboard.writeText(text);
+    triggerToast(`${label} disalin!`);
+  };
+
   return (
     <main className="charity-page" id="charity-page">
+      {/* Toast Notification */}
+      {toastVisible && (
+        <div className="toast-notification" role="status">
+          <Check size={14} /> {toastMessage}
+        </div>
+      )}
+
       {/* Hero Header */}
       <section className="page-hero" style={{ '--hero-accent': 'var(--color-accent)' }}>
         <div className="page-hero__bg" />
@@ -70,6 +103,145 @@ export default function CharityPage() {
               <Sparkles size={48} className="visual-spark" />
               <h3>Tagline Kami</h3>
               <p className="tagline">"Berbagi Kebaikan, Menuai Keberkahan" 🌷</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== CALCULATOR SECTION ===== */}
+      <section className="section" ref={calcRef} id="calculator-section">
+        <div className="container container--narrow">
+          <div className="charity-calculator card scroll-reveal">
+            <div className="charity-calculator__header">
+              <span className="section__badge" style={{ backgroundColor: 'var(--color-accent-glow)', color: 'var(--color-secondary-dark)', borderColor: 'var(--color-accent-light)' }}>
+                <Calculator size={14} /> Hitung Amal
+              </span>
+              <h3>Kalkulator Zakat & Sedekah</h3>
+              <p>Masukkan pendapatan atau simpananmu untuk menghitung zakat wajib dan anjuran sedekah secara praktis.</p>
+            </div>
+
+            <div className="charity-calculator__tabs">
+              <button 
+                onClick={() => { setCalcTab('income'); setAmount(''); }}
+                className={`calc-tab ${calcTab === 'income' ? 'active' : ''}`}
+              >
+                Zakat Pendapatan (Bulanan)
+              </button>
+              <button 
+                onClick={() => { setCalcTab('savings'); setAmount(''); }}
+                className={`calc-tab ${calcTab === 'savings' ? 'active' : ''}`}
+              >
+                Zakat Maal (Simpanan Tahunan)
+              </button>
+            </div>
+
+            <div className="charity-calculator__body">
+              <div className="form-group">
+                <label>
+                  {calcTab === 'income' ? 'Masukkan Pendapatan Bulanan (Rupiah)' : 'Masukkan Total Simpanan Emas/Uang/Harta (Rupiah)'}
+                </label>
+                <div className="input-with-symbol">
+                  <span className="currency-symbol">Rp</span>
+                  <input 
+                    type="number" 
+                    placeholder="Contoh: 5000000" 
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* Sedekah Slider */}
+              <div className="form-group">
+                <div className="slider-label-row">
+                  <label>Rekomendasi Sedekah Sukarela: <strong>{sedekahPercent}%</strong></label>
+                  <span className="slider-value">Rp {Math.round(sedekahValue).toLocaleString('id-ID')}</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="1" 
+                  max="10" 
+                  step="0.5"
+                  value={sedekahPercent}
+                  onChange={(e) => setSedekahPercent(parseFloat(e.target.value))}
+                  className="sedekah-slider"
+                />
+                <div className="slider-hints">
+                  <span>1%</span>
+                  <span>2.5% (Standar)</span>
+                  <span>5%</span>
+                  <span>10%</span>
+                </div>
+              </div>
+
+              {/* Calculation Summary Results */}
+              <div className="calc-results-box">
+                <div className="result-row">
+                  <span>
+                    Status Nisab: 
+                  </span>
+                  <strong className={isNisabReached ? 'text-success' : 'text-muted'}>
+                    {isNisabReached ? '✨ Wajib Zakat (Memenuhi Nisab)' : 'Belum Wajib Zakat'}
+                  </strong>
+                </div>
+                
+                <div className="result-row font-medium">
+                  <span>Kewajiban Zakat (2.5%):</span>
+                  <span>Rp {Math.round(zakatValue).toLocaleString('id-ID')}</span>
+                </div>
+
+                <div className="result-row font-medium">
+                  <span>Sedekah Pilihan ({sedekahPercent}%):</span>
+                  <span>Rp {Math.round(sedekahValue).toLocaleString('id-ID')}</span>
+                </div>
+
+                <div className="result-row font-bold total-row">
+                  <span>Total Rekomendasi Amal:</span>
+                  <span>Rp {Math.round(zakatValue + sedekahValue).toLocaleString('id-ID')}</span>
+                </div>
+              </div>
+
+              {/* Payment Details Callout */}
+              <div className="payment-callout">
+                <h4>Informasi Transfer Donasi BSI</h4>
+                <div className="payment-callout__row">
+                  <div className="bank-info">
+                    <p>BSI (Bank Syariah Indonesia)</p>
+                    <p className="acc-num"><strong>7234024345</strong></p>
+                    <p>a.n. <strong>Belajar Sedekah Lampung</strong></p>
+                  </div>
+                  <div className="action-buttons">
+                    <button 
+                      onClick={() => handleCopyText('7234024345', 'Nomor rekening')}
+                      className="btn btn--secondary btn--sm"
+                    >
+                      <Copy size={12} /> Salin Rekening
+                    </button>
+                    <button 
+                      onClick={() => handleCopyText(Math.round(zakatValue + sedekahValue).toString(), 'Nominal donasi')}
+                      disabled={zakatValue + sedekahValue === 0}
+                      className="btn btn--secondary btn--sm"
+                    >
+                      <Copy size={12} /> Salin Nominal
+                    </button>
+                  </div>
+                </div>
+
+                <a 
+                  href={`https://wa.me/6282269665134?text=${encodeURIComponent(
+                    `Assalamu'alaikum Admin Dzakirah 🌷\n\nSaya telah menghitung donasi via kalkulator Belajar Sedekah:\n` +
+                    `• Kategori: Zakat/Sedekah\n` +
+                    `• Total Amal: Rp ${(zakatValue + sedekahValue).toLocaleString('id-ID')}\n\n` +
+                    `Saya akan mengonfirmasi bukti transfer donasi setelah ini.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--primary btn--full btn--pill mt-4"
+                  style={{ pointerEvents: (zakatValue + sedekahValue === 0) ? 'none' : 'auto', opacity: (zakatValue + sedekahValue === 0) ? 0.6 : 1 }}
+                >
+                  Konfirmasi Amal via WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -44,6 +44,16 @@ export default function HomePage() {
         <div className="hero__float hero__float--3">🌸</div>
         <div className="hero__float hero__float--4">🍃</div>
 
+        {/* Blossom Petal Particles (A) */}
+        <div className="petal-container">
+          <span className="petal-particle" style={{ left: '10%', animationDuration: '8s', animationDelay: '0s', fontSize: '1.2rem' }}>🌸</span>
+          <span className="petal-particle" style={{ left: '25%', animationDuration: '10s', animationDelay: '2s', fontSize: '0.9rem' }}>🍃</span>
+          <span className="petal-particle" style={{ left: '40%', animationDuration: '7s', animationDelay: '4s', fontSize: '1.1rem' }}>🌸</span>
+          <span className="petal-particle" style={{ left: '55%', animationDuration: '12s', animationDelay: '1s', fontSize: '0.8rem' }}>🍃</span>
+          <span className="petal-particle" style={{ left: '70%', animationDuration: '9s', animationDelay: '5s', fontSize: '1.2rem' }}>🌸</span>
+          <span className="petal-particle" style={{ left: '85%', animationDuration: '11s', animationDelay: '3s', fontSize: '0.9rem' }}>🌸</span>
+        </div>
+
         <div className="hero__content container">
           <span className="hero__badge">
             <Sparkles size={14} />

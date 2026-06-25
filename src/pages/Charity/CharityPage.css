@@ -222,6 +222,250 @@
   box-shadow: var(--shadow-glow-accent);
 }
 
+/* Kalkulator Zakat & Sedekah (A) */
+.charity-calculator {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.charity-calculator__header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.charity-calculator__header h3 {
+  font-size: var(--text-3xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.charity-calculator__header p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.charity-calculator__tabs {
+  display: flex;
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-6);
+  gap: var(--space-2);
+}
+
+.calc-tab {
+  flex: 1;
+  padding: var(--space-3) var(--space-2);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.calc-tab:hover {
+  color: var(--color-primary);
+}
+
+.calc-tab.active {
+  color: var(--color-primary-dark);
+  border-bottom-color: var(--color-primary);
+}
+
+.charity-calculator__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.input-with-symbol {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg);
+  transition: var(--transition-base);
+}
+
+.input-with-symbol:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.currency-symbol {
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-primary-lighter);
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-bold);
+  border-right: 1px solid var(--color-border);
+}
+
+.input-with-symbol input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-medium);
+}
+
+.slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.slider-value {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark);
+}
+
+.sedekah-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 6px;
+  background: var(--color-divider);
+  border-radius: var(--radius-pill);
+  outline: none;
+}
+
+.sedekah-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-circle);
+  background: var(--color-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.1s ease;
+}
+
+.sedekah-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.slider-hints {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.calc-results-box {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+.total-row {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+  margin-top: var(--space-1);
+  color: var(--color-text);
+}
+
+.text-success {
+  color: var(--color-success) !important;
+}
+
+.payment-callout {
+  border: 1px solid var(--color-primary-light);
+  background-color: var(--color-primary-lighter);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-2);
+}
+
+.payment-callout h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-3);
+  text-align: center;
+}
+
+.payment-callout__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  background-color: var(--color-white);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-primary-light);
+}
+
+.bank-info p {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.bank-info .acc-num {
+  font-size: var(--text-lg);
+  color: var(--color-primary-dark);
+  margin: 2px 0;
+}
+
+.payment-callout .action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.payment-callout .action-buttons .btn {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-xs);
+  background-color: var(--color-bg);
+  border-color: var(--color-primary-light);
+  color: var(--color-text-secondary);
+}
+
+.payment-callout .action-buttons .btn:hover {
+  background-color: var(--color-primary-lighter);
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 576px) {
+  .payment-callout__row {
+    flex-direction: column;
+    text-align: center;
+  }
+  .payment-callout .action-buttons {
+    width: 100%;
+    flex-direction: row;
+  }
+  .payment-callout .action-buttons .btn {
+    flex: 1;
+  }
+}
+
 /* Responsive */
 @media (max-width: 992px) {
   .charity-intro {

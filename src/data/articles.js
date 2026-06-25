@@ -156,4 +156,77 @@ Anak tantrum bukan berarti anak nakal. Mereka sedang belajar mengelola emosi yan
     readTime: '6 menit',
     featured: false,
   },
+  {
+    id: 7,
+    slug: 'mengatasi-overthinking-dan-burnout-muslimah',
+    title: 'Mengatasi Overthinking & Burnout bagi Muslimah',
+    excerpt: 'Apakah kamu sering merasa lelah mental karena pikiran yang terus berputar? Islam dan psikologi menawarkan solusi untuk menenangkan jiwamu...',
+    content: `Apakah kamu sering merasa lelah mental karena pikiran yang terus berputar? Keadaan ini sering kita kenal sebagai overthinking yang jika dibiarkan dapat memicu burnout (kelelahan mental dan fisik yang ekstrem).
+
+Sebagai muslimah yang aktif belajar dan bekerja, menjaga kesehatan jiwa adalah bagian dari amanah merawat diri.
+
+## Hubungan Overthinking dan Burnout
+
+Overthinking memakan energi mental kita secara diam-diam. Saat otak terus memikirkan skenario terburuk yang belum terjadi, tubuh merespon dengan melepaskan hormon stres, yang lambat laun memicu kelelahan fisik.
+
+## Langkah Mengatasinya secara Psikologis & Islami
+
+1. **Latihan Grounding & Dzikir:** Saat pikiran melayang, tarik napas dalam-dalam, rasakan pijakan kakimu, dan ucapkan istighfar secara perlahan untuk mengembalikan kesadaran ke momen saat ini.
+2. **Batasi Asupan Informasi:** Kurangi scrolling media sosial yang memicu perbandingan sosial (hasad) dan kecemasan berlebih.
+3. **Pahami Batas Kendali Diri:** Bedakan antara hal yang bisa kamu usahakan dan hal yang mutlak menjadi ketetapan Allah. Di sinilah indahnya konsep tawakal.
+4. **Berbagi Cerita:** Jangan simpan bebanmu sendiri. Bergabunglah dalam sharing circle Dzakirah untuk melepaskan penat bersama sesama muslimah yang mendukungmu.`,
+    category: 'Mental Health',
+    image: '/images/blog-mental-health.png',
+    date: '2026-06-10',
+    readTime: '5 menit',
+    featured: true,
+  },
+  {
+    id: 8,
+    slug: 'taaruf-vs-pacaran-islami',
+    title: 'Ta\'aruf vs Pacaran Islami: Batasan yang Benar',
+    excerpt: 'Banyak yang menyamakan proses ta\'aruf dengan pacaran berlabel islami. Mari pahami perbedaan mendasar dan batasan syar\'inya...',
+    content: `Seiring maraknya tren hijrah, istilah ta'aruf semakin sering terdengar. Namun, sering kali terjadi kesalahpahaman di mana proses pengenalan pranikah ini dipraktikkan layaknya pacaran biasa yang hanya diganti labelnya menjadi "pacaran islami".
+
+Mari kita telaah perbedaan esensial agar ikhtiar menjemput jodoh tetap dalam koridor yang diridhai Allah SWT.
+
+## Perbedaan Mendasar Ta'aruf vs Pacaran
+
+1. **Kehadiran Perantara (Wali/Mediator):** Dalam ta'aruf yang syar'i, komunikasi selalu dimediasi oleh perantara terpercaya (wali, ustadz, atau mentor). Tidak ada ruang untuk bertukar pesan pribadi secara berdua-duaan tanpa pengawasan.
+2. **Kejelasan Niat dan Waktu:** Ta'aruf dilakukan dengan target pernikahan yang jelas dan dalam jangka waktu yang terukur. Jika tidak cocok, proses segera dihentikan secara baik-baik tanpa membuang waktu.
+3. **Fokus pada Data Objektif:** Ta'aruf mengutamakan pertukaran biodata (cv ta'aruf) yang jujur tentang prinsip hidup, kesehatan, finansial, dan visi misi keluarga, bukan obrolan emosional atau romansa semu.
+
+## Mengapa Menjaga Batasan Itu Penting?
+
+Menjaga batasan pranikah adalah perlindungan bagi hatimu. Menghindari khalwat (berdua-duan) dan menjaga lisan dari rayuan sebelum ijab kabul akan menyelamatkan pernikahanmu dari hilangnya keberkahan awal.`,
+    category: 'Pranikah',
+    image: '/images/blog-pranikah.png',
+    date: '2026-06-18',
+    readTime: '6 menit',
+    featured: false,
+  },
+  {
+    id: 9,
+    slug: 'menjaga-kesehatan-mental-ibu',
+    title: 'Menjaga Kesehatan Mental Ibu: Kunci Harmonis Keluarga',
+    excerpt: 'Ibu yang bahagia melahirkan generasi yang bahagia. Mengapa menjaga kesehatan mental seorang ibu adalah prioritas utama rumah tangga...',
+    content: `Ada ungkapan indah yang sering kita dengar: "Ibu adalah madrasah pertama bagi anak-anaknya." Namun, bagaimana seorang ibu bisa mengajar dan mengasuh dengan penuh kasih jika tangki emosionalnya sendiri kosong dan jiwanya lelah?
+
+Menjaga kesehatan mental ibu bukanlah bentuk keegoisan, melainkan prioritas utama demi tegaknya keharmonisan keluarga.
+
+## Mengapa Mental Ibu Begitu Krusial?
+
+Seorang ibu yang mengalami stres kronis atau depresi pasca melahirkan (postpartum depression) akan kesulitan membangun bonding emosional yang sehat dengan anaknya. Anak-anak menangkap getaran emosi ibunya; jika ibu merasa cemas, anak cenderung rewel dan cemas pula.
+
+## Tips Menjaga Tangki Emosi Ibu Tetap Penuh
+
+1. **Bangun Komunikasi dengan Suami:** Suami adalah support system nomor satu. Sampaikan kelelahanmu tanpa rasa bersalah, dan sepakati pembagian tugas rumah tangga secara adil.
+2. **Luangkan Waktu untuk Diri Sendiri (Micro Self-Care):** Cukup 15 menit sehari untuk menikmati teh hangat, membaca Al-Quran dengan tenang, atau sekadar melakukan relaksasi napas saat anak tidur.
+3. **Bergabung dengan Komunitas Pendukung:** Di Dzakirah, kami menyediakan support group sesama ibu untuk saling menyemangati, bertukar tips parenting, dan berbagi tawa tanpa adanya penghakiman.`,
+    category: 'Parenting',
+    image: '/images/blog-parenting.png',
+    date: '2026-06-22',
+    readTime: '5 menit',
+    featured: false,
+  }
 ];
