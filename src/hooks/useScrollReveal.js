@@ -51,12 +51,13 @@ export function useMultiScrollReveal(count, options = {}) {
       }
     );
 
-    refs.current.forEach((el) => {
+    const currentRefs = refs.current;
+    currentRefs.forEach((el) => {
       if (el) observer.observe(el);
     });
 
     return () => {
-      refs.current.forEach((el) => {
+      currentRefs.forEach((el) => {
         if (el) observer.unobserve(el);
       });
     };

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Instagram({ size = 24, strokeWidth = 2, className = '', ...props }) {
   return (
     <svg

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Sparkles, Gift, Users, ArrowRight, CheckCircle, MessageSquare, Calculator, Copy, Check } from 'lucide-react';
+import { Heart, Sparkles, Gift, Users, ArrowRight, MessageSquare, Calculator, Copy, Check } from 'lucide-react';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './CharityPage.css';

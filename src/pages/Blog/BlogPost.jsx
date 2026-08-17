@@ -12,14 +12,14 @@ export default function BlogPost() {
   const revealRef = useScrollReveal();
   const [readingProgress, setReadingProgress] = useState(0);
   const [toastVisible, setToastVisible] = useState(false);
-  const [bookmarks, setBookmarks] = useState([]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('dzakirah_bookmarks');
-    if (saved) {
-      setBookmarks(JSON.parse(saved));
+  const [bookmarks, setBookmarks] = useState(() => {
+    try {
+      const saved = localStorage.getItem('dzakirah_bookmarks');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
     }
-  }, []);
+  });
 
   const toggleBookmark = () => {
     if (!post) return;
@@ -155,7 +155,6 @@ export default function BlogPost() {
                     return (
                       <ul key={idx} className="post-list">
                         {lines.map((line, i) => {
-                          const cleanLine = line.replace(/^\d+\.\s*\*\*/, '').replace(/^\*\*/, '').replace(/\*\*/g, '');
                           const parts = line.split('**');
                           return (
                             <li key={i}>

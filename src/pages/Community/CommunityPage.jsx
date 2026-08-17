@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Users, Shield, Compass, Heart, ArrowRight, Camera, MessageCircle } from 'lucide-react';
+import { Users, Shield, Compass, Heart, ArrowRight, MessageCircle } from 'lucide-react';
 import Instagram from '../../components/Icons/Instagram';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';

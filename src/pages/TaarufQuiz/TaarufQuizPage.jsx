@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowLeft, Heart, CheckCircle2, ChevronRight, AlertCircle, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Heart, CheckCircle2, ChevronRight, RefreshCw } from 'lucide-react';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './TaarufQuizPage.css';
 

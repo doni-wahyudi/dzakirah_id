@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Send, MessageSquare, Heart } from 'lucide-react';
+import { MapPin, Send, MessageSquare, Heart } from 'lucide-react';
 import Instagram from '../../components/Icons/Instagram';
 import FaqSection from '../../components/FaqSection/FaqSection';
 import { useScrollReveal } from '../../hooks/useScrollReveal';

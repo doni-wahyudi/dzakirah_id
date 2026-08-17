@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Sparkles, Heart, Brain, CloudRain, Flame, Smile, RefreshCw } from 'lucide-react';
 import { healingVerses } from '../../data/healingVerses';
 import './HealingVerses.css';

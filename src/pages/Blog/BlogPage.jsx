@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Calendar, Clock, ArrowRight, Search, Sparkles, Bookmark } from 'lucide-react';
 import { articles } from '../../data/articles';
@@ -12,14 +12,14 @@ export default function BlogPage() {
   useDocumentTitle('Blog & Artikel');
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [searchQuery, setSearchQuery] = useState('');
-  const [bookmarks, setBookmarks] = useState([]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('dzakirah_bookmarks');
-    if (saved) {
-      setBookmarks(JSON.parse(saved));
+  const [bookmarks, setBookmarks] = useState(() => {
+    try {
+      const saved = localStorage.getItem('dzakirah_bookmarks');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
     }
-  }, []);
+  });
 
   const toggleBookmark = (id, e) => {
     e.preventDefault();

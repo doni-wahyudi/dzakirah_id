@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Home, BookOpen, Newspaper, MoreHorizontal } from 'lucide-react';
+import { X, ChevronDown, Home, BookOpen, Newspaper, MoreHorizontal } from 'lucide-react';
 import './Navbar.css';
 
 const mainNavLinks = [
@@ -41,17 +41,19 @@ export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
+  const [prevPath, setPrevPath] = useState(location.pathname);
+
+  if (prevPath !== location.pathname) {
+    setPrevPath(location.pathname);
+    setDrawerOpen(false);
+    setActiveDropdown(null);
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    setDrawerOpen(false);
-    setActiveDropdown(null);
-  }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? 'hidden' : '';

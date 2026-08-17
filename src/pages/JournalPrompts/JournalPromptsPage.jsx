@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowLeft, RefreshCw, Copy, Check, BookOpen } from 'lucide-react';
+import { ArrowLeft, RefreshCw, Copy, Check, BookOpen } from 'lucide-react';
 import { journalPrompts } from '../../data/journalPrompts';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './JournalPromptsPage.css';
