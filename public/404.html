@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dzakirah.id</title>
-    <script>
-      // SPA redirect for GitHub Pages
-      // Encodes the route as a query param and redirects to index.html
-      // The index.html then decodes it and replaces the history entry.
+    <script type="text/javascript">
+      // SPA redirect for GitHub Pages custom domain (root path)
+      // Reference: https://github.com/rafgraph/spa-github-pages
+      var pathSegmentsToKeep = 0;
+
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 2).join('/') +
-        '/?p=/' + l.pathname.slice(1).split('/').slice(1).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
         l.hash
       );
     </script>

@@ -122,7 +122,16 @@ This guarantees that child `.scroll-reveal` elements animate cleanly as soon as 
 
 ---
 
-## 7. Verification Pipeline & Verification Checklist
-1. **Local Development Server**: Run `npm run dev` to verify routes, transitions, active indicator underlines, lightbox popups, and responsive states (running dynamically on the `/dzakirah_id/` subfolder path).
+## 7. Custom Domain & Deployment Pipeline
+
+### Domain & GitHub Pages Architecture
+* **Target Custom Domain**: `https://dzakirah.id`
+* **Vite Base Path**: `/` (root path configured in [vite.config.js](file:///c:/Users/22036590/Documents/code/website/dzakirah_id/vite.config.js))
+* **CNAME Configuration**: `public/CNAME` contains `dzakirah.id` and is copied directly to `dist/CNAME` upon build.
+* **SPA 404 Redirect Handler**: `public/404.html` and `index.html` decode client-side SPA routes dynamically on GitHub Pages root domain.
+* **CI/CD Workflow**: [.github/workflows/deploy.yml](file:///c:/Users/22036590/Documents/code/website/dzakirah_id/.github/workflows/deploy.yml) automatically builds and deploys to GitHub Pages on every push to the `main` branch.
+
+### Verification Checklist
+1. **Local Development Server**: Run `npm run dev` to verify routes, transitions, active indicator underlines, lightbox popups, and responsive states.
 2. **Production Build Compilation**: Run `npm run build` to verify the asset pipeline bundles cleanly.
-3. **Deployment**: Run `npm run deploy` to publish the production bundle to GitHub Pages.
+3. **Deployment**: Push to GitHub `main` branch to trigger the automated GitHub Actions deployment.
