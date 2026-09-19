@@ -21,6 +21,8 @@ The React Router shell handles the following active routes:
 * `/tentang` (Tentang Kami / About Us)
 * `/program` (Program Overview / Programs)
 * `/program/:slug` (Dynamic Program Detail page, e.g. `mental-health`, `pranikah`, `parenting`)
+* `/ruang-renung` (Ruang Renung / Journal Prompts & Guided Reflection)
+* `/quiz-pranikah` (Quiz Kesiapan Menikah & Taaruf)
 * `/komunitas` (Komunitas / Chapter & Join Steps)
 * `/blog` (Blog / Article Archive with Live Search & Category Filtering)
 * `/blog/:slug` (BlogPost / Rich Text Reading View)
@@ -135,3 +137,13 @@ This guarantees that child `.scroll-reveal` elements animate cleanly as soon as 
 1. **Local Development Server**: Run `npm run dev` to verify routes, transitions, active indicator underlines, lightbox popups, and responsive states.
 2. **Production Build Compilation**: Run `npm run build` to verify the asset pipeline bundles cleanly.
 3. **Deployment**: Push to GitHub `main` branch to trigger the automated GitHub Actions deployment.
+
+---
+
+## 8. Anti-AI-Slop & Human-Grade UI/UX Standards
+
+This codebase adheres to the `ui-ux-pro-design` skill configured in [.agents/skills/ui-ux-pro-design/SKILL.md](file:///c:/Users/whydo/D9043DB2025/code/explore/web_project/dzakirah_web/.agents/skills/ui-ux-pro-design/SKILL.md):
+* **Domain-Specific Art Direction**: Pure bespoke "Blossom Sage" palette (`#FAF6F0` base, `#E592A1` blossom primary, `#7A8E6B` sage secondary, `#C9A96E` gold accents). No generic `#0f172a` neon-purple AI templates.
+* **Typographic Contrast**: Google Fonts `Lora` (editorial serif) for elegant headings paired with `Outfit` (clean geometric sans) for body/UI copy.
+* **Complete Component States**: All interactive elements (pills, cards, buttons) implement all 6 states (`default`, `hover`, `focus-visible`, `active`, `loading`, `disabled`) with spring transitions (`cubic-bezier(0.16, 1, 0.3, 1)`).
+* **Ergonomics & Layout**: Strict 4px/8px modular scale, comfortable touch targets (minimum 44x44px), and native CSS micro-animations.
