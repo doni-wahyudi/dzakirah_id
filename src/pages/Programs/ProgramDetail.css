@@ -53,7 +53,7 @@
 }
 
 .program-points-list {
-  margin: var(--space-4) 0 var(--space-6) var(--space-6);
+  margin: var(--space-4) 0 var(--space-6) var(--space-4);
   list-style: none;
 }
 
@@ -63,14 +63,16 @@
   margin-bottom: var(--space-3);
   font-size: var(--text-base);
   color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
 }
 
 .program-points-list li::before {
-  content: '🌷';
+  content: '✦';
   position: absolute;
   left: 0;
   top: 1px;
-  font-size: 14px;
+  font-size: 13px;
+  color: var(--color-primary);
 }
 
 .program-objectives-box {
@@ -79,6 +81,7 @@
   background-color: var(--color-bg-alt);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
 }
 
 .program-objectives-box h4 {
@@ -115,6 +118,11 @@
 }
 
 /* Sidebar Info Card */
+.program-detail__sidebar {
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--space-6));
+}
+
 .program-info-card {
   padding: var(--space-8) var(--space-6);
   display: flex;

@@ -1,0 +1,66 @@
+{
+  "title": "Harness Practices Report — dzakirah_web",
+  "description": "CI/CD, build, deployment, and development infrastructure analysis for the Dzakirah.id React SPA",
+  "layout": {
+    "sections": [
+      {
+        "id": "header",
+        "type": "header",
+        "title": "Dzakirah.id — Harness Analysis",
+        "subtitle": "14 findings across 8 categories"
+      },
+      {
+        "id": "scorecard",
+        "type": "scorecard",
+        "metrics": [
+          { "label": "Total Findings", "value": 14, "maxValue": null },
+          { "label": "Critical", "value": 1, "maxValue": null, "color": "#dc2626" },
+          { "label": "High", "value": 4, "maxValue": null, "color": "#ea580c" },
+          { "label": "Medium", "value": 5, "maxValue": null, "color": "#ca8a04" },
+          { "label": "Low", "value": 4, "maxValue": null, "color": "#2563eb" }
+        ]
+      },
+      {
+        "id": "category-breakdown",
+        "type": "bar-chart",
+        "title": "Findings by Category",
+        "data": [
+          { "label": "CI/CD", "value": 3 },
+          { "label": "Architecture", "value": 2 },
+          { "label": "Performance", "value": 2 },
+          { "label": "Documentation", "value": 2 },
+          { "label": "Code Quality", "value": 2 },
+          { "label": "Testing", "value": 1 },
+          { "label": "Security", "value": 1 },
+          { "label": "Deployment", "value": 1 }
+        ]
+      },
+      {
+        "id": "findings-list",
+        "type": "findings",
+        "title": "Detailed Findings",
+        "sortBy": "severity"
+      },
+      {
+        "id": "strengths",
+        "type": "strengths",
+        "title": "What's Working Well",
+        "count": 10
+      },
+      {
+        "id": "priority-actions",
+        "type": "actions",
+        "title": "Top Priority Actions",
+        "count": 6
+      }
+    ]
+  },
+  "theme": {
+    "primaryColor": "#D15B70",
+    "secondaryColor": "#6E8561",
+    "accentColor": "#C59E5E",
+    "backgroundColor": "#FFF0F2",
+    "fontHeading": "Lora",
+    "fontBody": "Outfit"
+  }
+}

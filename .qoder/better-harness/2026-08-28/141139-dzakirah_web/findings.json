@@ -1,0 +1,190 @@
+{
+  "project": "dzakirah_web",
+  "analyzedAt": "2026-08-28T14:11:39Z",
+  "techStack": {
+    "framework": "React 19 + Vite 8",
+    "language": "JavaScript/JSX (no TypeScript)",
+    "styling": "Native CSS with design tokens (CSS custom properties)",
+    "routing": "React Router v7",
+    "icons": "lucide-react",
+    "backend": "@supabase/supabase-js (declared, no usage found in src)",
+    "hosting": "GitHub Pages (custom domain: dzakirah.id)",
+    "ci": "GitHub Actions"
+  },
+  "summary": {
+    "totalFindings": 14,
+    "bySeverity": { "critical": 1, "high": 4, "medium": 5, "low": 4 },
+    "byCategory": {
+      "testing": 1,
+      "ci-cd": 3,
+      "security": 1,
+      "architecture": 2,
+      "performance": 2,
+      "documentation": 2,
+      "code-quality": 2,
+      "deployment": 1
+    }
+  },
+  "findings": [
+    {
+      "id": "F01",
+      "title": "Zero test coverage — no test framework or test files exist",
+      "severity": "critical",
+      "category": "testing",
+      "description": "The entire src/ directory contains zero test files (*.test.*, *.spec.*, __tests__/). No testing framework (Vitest, Jest, Testing Library) is installed in devDependencies. A 14-page React SPA with custom hooks, dynamic routing, and interactive components ships with no automated safety net.",
+      "impact": "Regressions in routing, scroll-reveal hooks, data filtering (blog/events), and form logic go undetected until production. Every deploy to GitHub Pages is a blind push.",
+      "recommendation": "Add Vitest + @testing-library/react. Start with hook unit tests (useScrollReveal, useDocumentTitle), then component smoke tests for Navbar, ProgramPaths, and critical page renders. Wire `npm test` into the CI pipeline before the build step.",
+      "files": ["package.json", "src/hooks/useScrollReveal.js", "src/hooks/useDocumentTitle.js"]
+    },
+    {
+      "id": "F02",
+      "title": "CI pipeline skips linting — eslint is configured but never runs in CI",
+      "severity": "high",
+      "category": "ci-cd",
+      "description": "The deploy.yml workflow runs `npm ci` then `npm run build` with no `npm run lint` gate. ESLint is properly configured in eslint.config.js with React hooks and refresh plugins, but lint errors never block deployment.",
+      "impact": "React hooks rule violations, unused imports, and code quality issues can reach production silently. The lint script exists (`eslint .`) but is developer-opt-in only.",
+      "recommendation": "Add a `lint` step between `Install dependencies` and `Build site` in deploy.yml: `run: npm run lint`. Fail the build on lint errors to enforce the configured rules.",
+      "files": [".github/workflows/deploy.yml", "eslint.config.js", "package.json"]
+    },
+    {
+      "id": "F03",
+      "title": "Orphaned gh-pages deploy scripts in package.json",
+      "severity": "medium",
+      "category": "deployment",
+      "description": "The `predeploy` and `deploy` scripts (`gh-pages -d dist`) and the `gh-pages` devDependency are legacy artifacts from a pre-GitHub Actions deployment strategy. The active CI pipeline uses actions/deploy-pages@v4, making these dead code that confuses contributors.",
+      "impact": "Running `npm run deploy` locally would attempt an alternative deployment path that conflicts with the CI pipeline. The `gh-pages` package adds ~12MB to node_modules unnecessarily.",
+      "recommendation": "Remove `predeploy`, `deploy` scripts from package.json and uninstall the `gh-pages` devDependency. Document the Actions-only deploy model in README.",
+      "files": ["package.json"]
+    },
+    {
+      "id": "F04",
+      "title": "No GitHub environment protection rules for production",
+      "severity": "medium",
+      "category": "ci-cd",
+      "description": "The deploy job targets `environment: github-pages` but there is no evidence of GitHub environment protection rules (required reviewers, wait timers, branch restrictions). Any push to main deploys immediately.",
+      "impact": "Accidental or malicious pushes to main go straight to production with no human gate. For a community site with 11K+ followers, an erroneous deploy could affect public-facing content.",
+      "recommendation": "Configure GitHub environment protection rules for `github-pages`: require at least 1 reviewer for production deploys, or use branch protection rules requiring PR reviews before merge to main.",
+      "files": [".github/workflows/deploy.yml"]
+    },
+    {
+      "id": "F05",
+      "title": "Supabase dependency declared but no environment variables or usage found",
+      "severity": "high",
+      "category": "architecture",
+      "description": "@supabase/supabase-js (^2.106.1) is listed in dependencies, but no src/ file imports it, no .env or .env.example exists, and no Supabase configuration (URL, anon key) is present. This inflates the bundle and suggests incomplete feature work.",
+      "impact": "The Supabase client library (~80KB gzipped) ships to every visitor's browser without being used. It also signals planned backend integration (forms, testimonials submission?) that was never completed.",
+      "recommendation": "If Supabase integration is planned: create .env.example with VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY placeholders, add a src/lib/supabase.js client, and document setup in README. If abandoned: remove the dependency to reduce bundle size.",
+      "files": ["package.json"]
+    },
+    {
+      "id": "F06",
+      "title": "useMultiScrollReveal hook has object-reference instability in dependency array",
+      "severity": "medium",
+      "category": "performance",
+      "description": "The useMultiScrollReveal hook accepts an `options = {}` parameter, and the useEffect depends on `options.threshold` and `options.rootMargin`. However, each render creates a new options object. While the primitive values are stable, the pattern is fragile — any future non-primitive option would cause infinite re-render loops with IntersectionObserver recreation.",
+      "impact": "Currently no bug manifests because primitive destructured values remain stable. But the pattern violates React hook best practices and is a latent footgun for future maintenance.",
+      "recommendation": "Destructure options into primitives at the top of the hook, or use useMemo/useRef for the options object. Same applies to useScrollReveal.",
+      "files": ["src/hooks/useScrollReveal.js"]
+    },
+    {
+      "id": "F07",
+      "title": "No error boundary components for production error handling",
+      "severity": "high",
+      "category": "architecture",
+      "description": "The React app has no ErrorBoundary component wrapping routes or the root. A runtime error in any page component will unmount the entire app, showing a blank white screen with no user feedback or recovery path.",
+      "impact": "JavaScript errors from dynamic routes (ProgramDetail, BlogPost with slug params), data parsing, or third-party script failures crash the full SPA. Users see a blank page with no way to recover except manual refresh.",
+      "recommendation": "Create a top-level ErrorBoundary component wrapping <Routes> in App.jsx. Show a user-friendly fallback with a 'Return Home' link. Log errors to a monitoring service or at minimum to console for debugging.",
+      "files": ["src/App.jsx", "src/main.jsx"]
+    },
+    {
+      "id": "F08",
+      "title": "Missing security headers in index.html",
+      "severity": "medium",
+      "category": "security",
+      "description": "index.html lacks Content-Security-Policy, X-Content-Type-Options, Referrer-Policy, and Permissions-Policy headers. While GitHub Pages limits server-side header control, meta tags can provide partial protection. The page loads external Google Fonts and has inline scripts.",
+      "impact": "No CSP means any injected script (via XSS in future user-content features like testimonials) would execute without restriction. The inline 404-redirect script in index.html would be blocked by a strict CSP, so it needs consideration.",
+      "recommendation": "Add meta CSP tag with at minimum: `default-src 'self'; font-src fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com`. Consider moving the SPA redirect script to a separate file for CSP compatibility.",
+      "files": ["index.html", "public/404.html"]
+    },
+    {
+      "id": "F09",
+      "title": "TECHNICAL_DETAILS.md references outdated React version (18 vs actual 19)",
+      "severity": "low",
+      "category": "documentation",
+      "description": "TECHNICAL_DETAILS.md states 'React 18' in Section 1, but package.json declares react ^19.2.6. The documentation also lists a different workspace path (C:\\Users\\22036590\\Documents\\code\\website\\dzakirah_id) in file links, suggesting it was authored on a different machine and never updated.",
+      "impact": "Contributors reading the technical docs get incorrect version information. Stale file path links (C:\\Users\\22036590\\...) are non-functional for anyone else.",
+      "recommendation": "Update TECHNICAL_DETAILS.md to reflect React 19. Replace absolute file paths with relative repository paths. Add a 'last updated' date to the document.",
+      "files": ["TECHNICAL_DETAILS.md", "package.json"]
+    },
+    {
+      "id": "F10",
+      "title": "Google Fonts loaded without display=swap optimization for critical path",
+      "severity": "low",
+      "category": "performance",
+      "description": "Google Fonts are loaded via <link> tags in index.html with `display=swap`, which is good. However, both Lora (7 weights including italic variants) and Outfit (5 weights) are loaded, totaling ~15+ font files. The preconnect hints help, but font loading still blocks first paint on slow connections.",
+      "impact": "On 3G/slow connections, text rendering is delayed while ~200KB+ of font files download. Indonesian mobile users on limited bandwidth may see layout shifts.",
+      "recommendation": "Audit which font weights are actually used in CSS and trim unused variants. Consider `font-display: optional` for non-critical weights, or self-hosting fonts to eliminate the external request dependency.",
+      "files": ["index.html"]
+    },
+    {
+      "id": "F11",
+      "title": "No bundle analysis or performance budgeting",
+      "severity": "medium",
+      "category": "code-quality",
+      "description": "No rollup-plugin-visualizer, vite-plugin-inspect, or bundle analysis tooling is configured. The Supabase dependency alone adds significant weight. There are no performance budgets defined for bundle size, and no Lighthouse CI in the pipeline.",
+      "impact": "Bundle size grows unchecked. With Supabase, React 19, React Router 7, and lucide-react, the JS bundle likely exceeds 200KB gzipped without anyone monitoring.",
+      "recommendation": "Add rollup-plugin-visualizer for periodic bundle audits. Consider vite-plugin-compression for gzip/brotli reporting. Add a Lighthouse CI step in the GitHub Actions workflow.",
+      "files": ["vite.config.js", ".github/workflows/deploy.yml"]
+    },
+    {
+      "id": "F12",
+      "title": "Navbar uses index-based keys for mapped elements",
+      "severity": "low",
+      "category": "code-quality",
+      "description": "In Navbar.jsx, mainNavLinks and mobileNavItems are mapped using `key={i}` (array index) at lines 77, 97, 124, 158. While the nav link arrays are static and won't reorder, this violates React's key best practice. The child items have unique `path` properties that would serve as stable keys.",
+      "impact": "No immediate bug, but if nav items ever become dynamic (CMS-driven, A/B tested), index keys would cause incorrect DOM reconciliation and lost component state.",
+      "recommendation": "Use `key={item.path || item.label}` instead of `key={i}` for all nav link mappings. This is a low-risk, high-hygiene improvement.",
+      "files": ["src/components/Navbar/Navbar.jsx"]
+    },
+    {
+      "id": "F13",
+      "title": "No TypeScript or PropTypes for component contract validation",
+      "severity": "high",
+      "category": "architecture",
+      "description": "The codebase uses plain JavaScript/JSX with no TypeScript and no PropTypes declarations. Components like ProgramPaths, TestimonialWall, and ProgramDetail accept complex object props (programs, testimonials, event data) with no runtime or compile-time shape validation.",
+      "impact": "Prop shape mismatches (e.g., a renamed field in programs.js) fail silently at runtime with undefined rendering rather than clear errors. New contributors have no IDE-level guidance on expected prop shapes.",
+      "recommendation": "Short-term: Add PropTypes to all components accepting complex props. Long-term: Consider gradual TypeScript migration starting with data files (programs.js, articles.js, events.js) to catch shape mismatches at build time.",
+      "files": ["src/data/programs.js", "src/components/ProgramPaths/ProgramPaths.jsx", "src/components/TestimonialWall/TestimonialWall.jsx"]
+    },
+    {
+      "id": "F14",
+      "title": "GitHub Actions workflow lacks Node.js version matrix and caching for dist",
+      "severity": "low",
+      "category": "ci-cd",
+      "description": "The workflow pins Node.js 20 with npm caching (good), but does not test against multiple Node versions. Since the project uses modern ESM (\"type\": \"module\") and React 19, future Node.js LTS upgrades could introduce breaking changes that go undetected until the CI runner updates.",
+      "impact": "Low immediate risk since GitHub's ubuntu-latest provides a stable Node 20. But when Node 22 LTS becomes default, undetected ESM or API incompatibilities could break builds.",
+      "recommendation": "Consider adding a matrix strategy testing Node 20 and 22 to catch forward-compatibility issues early. This is optional for a static site but valuable for long-term maintainability.",
+      "files": [".github/workflows/deploy.yml"]
+    }
+  ],
+  "strengths": [
+    "Clean GitHub Actions pipeline with latest action versions (checkout@v4, setup-node@v4, deploy-pages@v4)",
+    "Proper npm caching and deterministic installs via `npm ci`",
+    "Concurrency controls prevent parallel deployment conflicts",
+    "Well-structured CSS design system with comprehensive custom properties (60+ design tokens)",
+    "SPA routing workaround for GitHub Pages using 404.html redirect pattern",
+    "ESLint flat config with React hooks and refresh plugins properly configured",
+    "StrictMode enabled in React entry point",
+    "Clear separation of concerns: data/, hooks/, components/, pages/ directory structure",
+    "Custom hooks for cross-cutting concerns (scroll reveal, document title)",
+    "CNAME file in public/ for automatic custom domain configuration"
+  ],
+  "priorityActions": [
+    "Add Vitest + Testing Library and wire tests into CI pipeline",
+    "Add `npm run lint` step to deploy.yml before the build",
+    "Remove orphaned gh-pages scripts and dependency",
+    "Add ErrorBoundary component to prevent full-app crashes",
+    "Remove unused @supabase/supabase-js or implement the planned integration",
+    "Add PropTypes or TypeScript for component prop validation"
+  ]
+}

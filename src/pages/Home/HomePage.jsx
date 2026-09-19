@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, MapPin, Heart, Users as UsersIcon, Sparkles, BookOpen } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Heart, Users as UsersIcon, Sparkles, BookOpen, Flower2, Award, BookCheck } from 'lucide-react';
 import ProgramPaths from '../../components/ProgramPaths/ProgramPaths';
 import TestimonialWall from '../../components/TestimonialWall/TestimonialWall';
 import { programs as staticPrograms } from '../../data/programs';
@@ -46,20 +46,14 @@ export default function HomePage() {
           <div className="hero__gradient" />
         </div>
 
-        {/* Floating decorative elements */}
-        <div className="hero__float hero__float--1">🌷</div>
-        <div className="hero__float hero__float--2">✨</div>
-        <div className="hero__float hero__float--3">🌸</div>
-        <div className="hero__float hero__float--4">🍃</div>
-
-        {/* Blossom Petal Particles (A) */}
-        <div className="petal-container">
-          <span className="petal-particle" style={{ left: '10%', animationDuration: '8s', animationDelay: '0s', fontSize: '1.2rem' }}>🌸</span>
-          <span className="petal-particle" style={{ left: '25%', animationDuration: '10s', animationDelay: '2s', fontSize: '0.9rem' }}>🍃</span>
-          <span className="petal-particle" style={{ left: '40%', animationDuration: '7s', animationDelay: '4s', fontSize: '1.1rem' }}>🌸</span>
-          <span className="petal-particle" style={{ left: '55%', animationDuration: '12s', animationDelay: '1s', fontSize: '0.8rem' }}>🍃</span>
-          <span className="petal-particle" style={{ left: '70%', animationDuration: '9s', animationDelay: '5s', fontSize: '1.2rem' }}>🌸</span>
-          <span className="petal-particle" style={{ left: '85%', animationDuration: '11s', animationDelay: '3s', fontSize: '0.9rem' }}>🌸</span>
+        {/* Refined Vector Glow Accents */}
+        <div className="hero__ambient-glow hero__ambient-glow--1" />
+        <div className="hero__ambient-glow hero__ambient-glow--2" />
+        <div className="hero__decor-icon hero__decor-icon--1">
+          <Flower2 size={28} />
+        </div>
+        <div className="hero__decor-icon hero__decor-icon--2">
+          <Sparkles size={22} />
         </div>
 
         <div className="hero__content container">
@@ -69,7 +63,7 @@ export default function HomePage() {
           </span>
           <h1 className="hero__title">
             Ruang Pulih &<br />Tumbuh untuk<br />
-            <span className="hero__title-accent">Perempuan</span> 🌷
+            <span className="hero__title-accent">Perempuan</span>
           </h1>
           <p className="hero__subtitle">
             Bersama Dzakirah, temukan kedamaian, ilmu, dan komunitas yang mendukung perjalanan hidupmu sebagai muslimah.
@@ -109,14 +103,17 @@ export default function HomePage() {
             </div>
             <div className="about-snippet__stats">
               <div className="stat-card">
+                <div className="stat-card__icon-wrap"><UsersIcon size={20} /></div>
                 <span className="stat-card__number">11K+</span>
                 <span className="stat-card__label">Followers</span>
               </div>
               <div className="stat-card">
+                <div className="stat-card__icon-wrap"><BookCheck size={20} /></div>
                 <span className="stat-card__number">822+</span>
                 <span className="stat-card__label">Konten Edukasi</span>
               </div>
               <div className="stat-card">
+                <div className="stat-card__icon-wrap"><Award size={20} /></div>
                 <span className="stat-card__number">2020</span>
                 <span className="stat-card__label">Established</span>
               </div>
