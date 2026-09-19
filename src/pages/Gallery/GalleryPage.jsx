@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, Calendar, Sparkles, X, Heart } from 'lucide-react';
-import { galleryItems } from '../../data/gallery';
+import { galleryItems as staticGalleryItems } from '../../data/gallery';
+import { fetchGallery } from '../../lib/supabaseQueries';
+import { useSupabaseData } from '../../lib/useSupabaseData';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './GalleryPage.css';
@@ -10,6 +12,7 @@ const categories = ['Semua', 'Mental Health', 'Pranikah', 'Parenting', 'Belajar 
 
 export default function GalleryPage() {
   useDocumentTitle('Galeri Kegiatan');
+  const { data: galleryItems } = useSupabaseData(fetchGallery, staticGalleryItems);
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [activeLightboxItem, setActiveLightboxItem] = useState(null);
 

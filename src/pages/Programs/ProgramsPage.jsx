@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
 import ProgramPaths from '../../components/ProgramPaths/ProgramPaths';
-import { programs } from '../../data/programs';
+import { programs as staticPrograms } from '../../data/programs';
+import { fetchPrograms } from '../../lib/supabaseQueries';
+import { useSupabaseData } from '../../lib/useSupabaseData';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 export default function ProgramsPage() {
   useDocumentTitle('Program Kami');
+  const { data: programs } = useSupabaseData(fetchPrograms, staticPrograms);
   return (
     <main className="programs-page" id="programs-page">
       <section className="page-hero">
