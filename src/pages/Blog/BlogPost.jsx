@@ -1,13 +1,16 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Calendar, Clock, ArrowLeft, Send, Link as LinkIcon, Sparkles, Check, Bookmark } from 'lucide-react';
-import { articles } from '../../data/articles';
+import { articles as staticArticles } from '../../data/articles';
+import { fetchArticles } from '../../lib/supabaseQueries';
+import { useSupabaseData } from '../../lib/useSupabaseData';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './BlogPost.css';
 
 export default function BlogPost() {
   const { slug } = useParams();
+  const { data: articles } = useSupabaseData(fetchArticles, staticArticles);
   const post = articles.find((a) => a.slug === slug);
   const revealRef = useScrollReveal();
   const [readingProgress, setReadingProgress] = useState(0);

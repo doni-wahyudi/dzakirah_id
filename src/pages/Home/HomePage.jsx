@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, MapPin, Heart, Users as UsersIcon, Sparkles, BookOpen, Flower2, Award, BookCheck } from 'lucide-react';
 import ProgramPaths from '../../components/ProgramPaths/ProgramPaths';
 import TestimonialWall from '../../components/TestimonialWall/TestimonialWall';
-import { programs } from '../../data/programs';
-import { events } from '../../data/events';
-import { articles } from '../../data/articles';
-import { testimonials } from '../../data/testimonials';
+import { programs as staticPrograms } from '../../data/programs';
+import { events as staticEvents } from '../../data/events';
+import { articles as staticArticles } from '../../data/articles';
+import { testimonials as staticTestimonials } from '../../data/testimonials';
+import { fetchPrograms, fetchEvents, fetchArticles, fetchTestimonials } from '../../lib/supabaseQueries';
+import { useSupabaseData } from '../../lib/useSupabaseData';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import HealingVerses from '../../components/HealingVerses/HealingVerses';
@@ -13,6 +15,10 @@ import './HomePage.css';
 
 export default function HomePage() {
   useDocumentTitle('');
+  const { data: programs } = useSupabaseData(fetchPrograms, staticPrograms);
+  const { data: events } = useSupabaseData(fetchEvents, staticEvents);
+  const { data: articles } = useSupabaseData(fetchArticles, staticArticles);
+  const { data: testimonials } = useSupabaseData(fetchTestimonials, staticTestimonials);
   const aboutRef = useScrollReveal();
   const timelineRef = useScrollReveal();
   const testimonialRef = useScrollReveal();
@@ -22,7 +28,9 @@ export default function HomePage() {
   const setArticleRef = useMultiScrollReveal(3);
 
   const upcomingEvents = events.filter(e => e.isUpcoming).slice(0, 3);
-  const latestArticles = articles.slice(0, 3);
+  const latestArticles = [...articles]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
 
   const getImageUrl = (path) => {
     if (!path) return '';

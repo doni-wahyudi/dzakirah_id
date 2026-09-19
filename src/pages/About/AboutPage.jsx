@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import { Heart, Eye, Target, Sparkles, Flower2, Users, ArrowRight } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
-import { facilitators } from '../../data/facilitators';
+import { facilitators as staticFacilitators } from '../../data/facilitators';
+import { fetchFacilitators } from '../../lib/supabaseQueries';
+import { useSupabaseData } from '../../lib/useSupabaseData';
 import './AboutPage.css';
 
 const values = [
@@ -14,6 +16,7 @@ const values = [
 
 export default function AboutPage() {
   useDocumentTitle('Tentang Kami');
+  const { data: facilitators } = useSupabaseData(fetchFacilitators, staticFacilitators);
   const storyRef = useScrollReveal();
   const visionRef = useScrollReveal();
   const valuesRef = useScrollReveal();

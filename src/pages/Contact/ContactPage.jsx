@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, Send, MessageSquare, Heart } from 'lucide-react';
 import Instagram from '../../components/Icons/Instagram';
 import FaqSection from '../../components/FaqSection/FaqSection';
+import { createContactMessage } from '../../lib/supabaseQueries';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './ContactPage.css';
@@ -29,9 +30,18 @@ export default function ContactPage() {
     }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Best-effort: persist the message in Supabase so inquiries are captured
+    // even if the visitor never completes the WhatsApp hand-off.
+    await createContactMessage({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim(),
+    });
 
     // Build the WhatsApp message from form fields
     const waMessage = encodeURIComponent(
@@ -43,16 +53,13 @@ export default function ContactPage() {
     );
     const waUrl = `https://wa.me/6282269665134?text=${waMessage}`;
 
-    // Short delay for loading feel, then open WhatsApp
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+    setIsSubmitting(false);
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', subject: '', message: '' });
 
-      // Reset status after 5s
-      setTimeout(() => setSubmitStatus(null), 5000);
-    }, 600);
+    // Reset status after 5s
+    setTimeout(() => setSubmitStatus(null), 5000);
   };
 
 

@@ -2,15 +2,20 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, Mail, Send } from 'lucide-react';
 import Instagram from '../Icons/Instagram';
+import { subscribeNewsletter } from '../../lib/supabaseQueries';
 import './Footer.css';
 
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSent, setNewsletterSent] = useState(false);
 
-  const handleNewsletterSubmit = (e) => {
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     if (!newsletterEmail) return;
+
+    // Best-effort: store the subscriber in Supabase. Even if the API is
+    // unreachable we still hand off to WhatsApp so the user is never stuck.
+    await subscribeNewsletter({ email: newsletterEmail.trim() });
 
     const msg = encodeURIComponent(
       `Assalamu'alaikum Admin Dzakirah 🌷\n\nSaya ingin mendaftarkan email untuk info & update kegiatan Dzakirah.\n\nEmail: ${newsletterEmail}\n\nTerima kasih!`

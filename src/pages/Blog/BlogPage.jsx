@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Calendar, Clock, ArrowRight, Search, Sparkles, Bookmark } from 'lucide-react';
-import { articles } from '../../data/articles';
+import { articles as staticArticles } from '../../data/articles';
+import { fetchArticles } from '../../lib/supabaseQueries';
+import { useSupabaseData } from '../../lib/useSupabaseData';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './BlogPage.css';
@@ -10,6 +12,7 @@ const categories = ['Semua', 'Mental Health', 'Pranikah', 'Parenting', 'Tersimpa
 
 export default function BlogPage() {
   useDocumentTitle('Blog & Artikel');
+  const { data: articles } = useSupabaseData(fetchArticles, staticArticles);
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [searchQuery, setSearchQuery] = useState('');
   const [bookmarks, setBookmarks] = useState(() => {

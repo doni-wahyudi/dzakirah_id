@@ -1,7 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { Brain, Heart, Users, Sparkles, Calendar, MapPin, ArrowRight, Flower2, Clock } from 'lucide-react';
-import { programs } from '../../data/programs';
-import { events } from '../../data/events';
+import { programs as staticPrograms } from '../../data/programs';
+import { events as staticEvents } from '../../data/events';
+import { fetchPrograms, fetchEvents } from '../../lib/supabaseQueries';
+import { useSupabaseData } from '../../lib/useSupabaseData';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './ProgramDetail.css';
@@ -14,6 +16,8 @@ const iconMap = {
 
 export default function ProgramDetail() {
   const { slug } = useParams();
+  const { data: programs } = useSupabaseData(fetchPrograms, staticPrograms);
+  const { data: events } = useSupabaseData(fetchEvents, staticEvents);
   const program = programs.find((p) => p.slug === slug);
   useDocumentTitle(program ? program.title : 'Program');
   const headerRef = useScrollReveal();

@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, MapPin, Sparkles, AlertCircle, X, User, Phone } from 'lucide-react';
-import { events } from '../../data/events';
+import { events as staticEvents } from '../../data/events';
+import { fetchEvents, createRegistration } from '../../lib/supabaseQueries';
+import { useSupabaseData } from '../../lib/useSupabaseData';
 import { useScrollReveal, useMultiScrollReveal } from '../../hooks/useScrollReveal';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './EventsPage.css';
 
 export default function EventsPage() {
   useDocumentTitle('Event & Kajian');
+  const { data: events } = useSupabaseData(fetchEvents, staticEvents);
   const [registeringEvent, setRegisteringEvent] = useState(null);
   const [formData, setFormData] = useState({ name: '', whatsapp: '', city: '' });
   const [formError, setFormError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const openRegisterModal = (event) => {
     setRegisteringEvent(event);
@@ -23,33 +27,46 @@ export default function EventsPage() {
     return path.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : path;
   };
 
-  const handleModalSubmit = (e) => {
+  const handleModalSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.whatsapp.trim() || !formData.city.trim()) {
       setFormError('Semua kolom wajib diisi.');
       return;
     }
-    
+
     const phoneRegex = /^[0-9+()-\s]{8,18}$/;
     if (!phoneRegex.test(formData.whatsapp)) {
       setFormError('Nomor WhatsApp tidak valid.');
       return;
     }
 
+    const payload = {
+      event_id: registeringEvent.id ?? null,
+      name: formData.name.trim(),
+      whatsapp: formData.whatsapp.trim(),
+      city: formData.city.trim(),
+    };
+
+    // Persist the RSVP in Supabase (best-effort). The WhatsApp hand-off below
+    // still runs so the admin is notified even if the API is unreachable.
+    setSubmitting(true);
+    await createRegistration(payload);
+    setSubmitting(false);
+
     const adminPhone = '6282269665134';
     const message = `Assalamualaikum admin Dzakirah.id, saya ingin mendaftar untuk event:
 *${registeringEvent.title}*
 
 *Data Pendaftar:*
-- Nama Lengkap: ${formData.name.trim()}
-- No. WhatsApp: ${formData.whatsapp.trim()}
-- Domisili / Kota: ${formData.city.trim()}
+- Nama Lengkap: ${payload.name}
+- No. WhatsApp: ${payload.whatsapp}
+- Domisili / Kota: ${payload.city}
 
 Mohon informasi selanjutnya untuk konfirmasi pendaftaran. Terima kasih!`;
 
     const encodedMessage = encodeURIComponent(message);
     const waUrl = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
-    
+
     window.open(waUrl, '_blank');
     setRegisteringEvent(null);
   };
@@ -232,8 +249,8 @@ Mohon informasi selanjutnya untuk konfirmasi pendaftaran. Terima kasih!`;
                 </div>
               </div>
               {formError && <p className="modal-error-message">{formError}</p>}
-              <button type="submit" className="btn btn--primary btn--pill submit-btn">
-                Kirim Pendaftaran via WhatsApp <Sparkles size={14} style={{ marginLeft: 6 }} />
+              <button type="submit" className="btn btn--primary btn--pill submit-btn" disabled={submitting}>
+                {submitting ? 'Mengirim...' : 'Kirim Pendaftaran via WhatsApp'} <Sparkles size={14} style={{ marginLeft: 6 }} />
               </button>
             </form>
           </div>
